@@ -1,0 +1,5 @@
+/// Folder holding the exported CSVs: <repository>\dashboard\data
+expression DataFolder = "C:\merch-store-product-analytics\dashboard\data" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: f3c58aa5-55c9-a9f8-d443-553b72045466
+
+	annotation PBI_ResultType = Text

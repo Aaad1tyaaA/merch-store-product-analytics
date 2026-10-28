@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "kpis", "funnel_overall", "funnel_by_segment", "revenue_at_stake", "activation_odds", "retention_cohorts", "channel_quality", "promo_comparison", "power_table"]
+
+ref table kpis
+ref table funnel_overall
+ref table funnel_by_segment
+ref table revenue_at_stake
+ref table activation_odds
+ref table retention_cohorts
+ref table channel_quality
+ref table promo_comparison
+ref table power_table

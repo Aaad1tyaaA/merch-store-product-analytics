@@ -1,0 +1,98 @@
+table kpis
+	lineageTag: ffb6dc6d-b8e4-e545-99b0-f1ff937bdf85
+
+	measure Sessions = SUM(kpis[sessions])
+		formatString: #,0
+		lineageTag: ca464773-d984-9a69-d649-bf1306eab474
+
+	measure Orders = SUM(kpis[orders])
+		formatString: #,0
+		lineageTag: 47b67709-8152-dd3a-af52-4395116a8406
+
+	measure Revenue = SUM(kpis[revenue_usd])
+		formatString: \$#,0
+		lineageTag: d96f5365-078f-85f3-b589-695cd9baf7e4
+
+	measure AOV = DIVIDE([Revenue], [Orders])
+		formatString: \$#,0.00
+		lineageTag: 249d6d8a-76f7-1052-1764-583d16ca00b8
+
+	measure 'Session conversion' = DIVIDE(CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 6), CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 1))
+		formatString: 0.00%
+		lineageTag: 2a34d0e7-e9cd-dd9b-c4e3-e7cbd4d4d5dc
+
+	column sessions
+		dataType: int64
+		lineageTag: 0b9ab2b3-4a41-53cc-e494-01302c248dc3
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: double
+		lineageTag: 4c7afed6-0cbe-0cff-1663-e6d7f077e66a
+		summarizeBy: none
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_usd
+		dataType: double
+		lineageTag: fd4e3427-fff3-6b47-7d25-5068a6454b1e
+		summarizeBy: none
+		sourceColumn: revenue_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column session_conversion
+		dataType: double
+		lineageTag: 2ad5b0cb-c291-b53a-28dd-4c57ff033fa7
+		summarizeBy: none
+		sourceColumn: session_conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	column aov
+		dataType: double
+		lineageTag: 499064bf-74ec-4413-3f57-5347c9c1ef83
+		summarizeBy: none
+		sourceColumn: aov
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_per_session
+		dataType: double
+		lineageTag: 7f7d1525-9dee-65e8-712e-236bb44f46e4
+		summarizeBy: none
+		sourceColumn: revenue_per_session
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_date
+		dataType: dateTime
+		lineageTag: 1569b6ec-e088-05f3-229f-573096794061
+		summarizeBy: none
+		sourceColumn: first_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_date
+		dataType: dateTime
+		lineageTag: b0b246db-5517-acc8-606b-bc6563153fc9
+		summarizeBy: none
+		sourceColumn: last_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition kpis = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\kpis.csv"), [Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"sessions", Int64.Type}, {"orders", type number}, {"revenue_usd", type number}, {"session_conversion", type number}, {"aov", type number}, {"revenue_per_session", type number}, {"first_date", type date}, {"last_date", type date}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

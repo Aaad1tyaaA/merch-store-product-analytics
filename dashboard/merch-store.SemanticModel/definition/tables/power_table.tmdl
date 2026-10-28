@@ -1,0 +1,62 @@
+table power_table
+	lineageTag: 94aa7900-c16c-4c94-3b54-ba916c70a6ec
+
+	measure 'Users per arm' = SUM(power_table[n_per_arm])
+		formatString: #,0
+		lineageTag: fb9d65da-71d1-44ba-6546-bc5a395b7ebb
+
+	measure 'Weeks needed' = SUM(power_table[weeks_needed])
+		formatString: 0
+		lineageTag: 9e257911-f83e-6d78-df3a-97d339acae8e
+
+	column relative_mde
+		dataType: double
+		lineageTag: 954edbb8-ad75-573c-8a8b-26b8fd59e4a8
+		summarizeBy: none
+		sourceColumn: relative_mde
+
+		annotation SummarizationSetBy = Automatic
+
+	column absolute_mde_pts
+		dataType: double
+		lineageTag: 936b3b86-9fd8-e9f2-dfc8-18b549d0e058
+		summarizeBy: none
+		sourceColumn: absolute_mde_pts
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_per_arm
+		dataType: int64
+		lineageTag: ad3a984a-b650-b5cb-ac73-16a103ddabe7
+		summarizeBy: none
+		sourceColumn: n_per_arm
+
+		annotation SummarizationSetBy = Automatic
+
+	column weeks_needed
+		dataType: int64
+		lineageTag: ef409e3f-2aef-99fd-ede7-7a890cf19512
+		summarizeBy: none
+		sourceColumn: weeks_needed
+
+		annotation SummarizationSetBy = Automatic
+
+	column months_needed
+		dataType: double
+		lineageTag: f3060c44-3636-72b1-bb08-b9882ddcf34b
+		summarizeBy: none
+		sourceColumn: months_needed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition power_table = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\power_table.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"relative_mde", type number}, {"absolute_mde_pts", type number}, {"n_per_arm", Int64.Type}, {"weeks_needed", Int64.Type}, {"months_needed", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

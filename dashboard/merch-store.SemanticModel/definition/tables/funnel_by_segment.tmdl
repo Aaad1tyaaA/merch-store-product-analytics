@@ -1,0 +1,75 @@
+table funnel_by_segment
+	lineageTag: f9fabcf7-c0c3-688d-1683-b39af2818325
+
+	measure 'Step conversion' = AVERAGE(funnel_by_segment[step_conversion])
+		formatString: 0.0%
+		lineageTag: 5ae434e0-b148-54f9-cff6-e4fb9d2d77ed
+
+	column dimension
+		dataType: string
+		lineageTag: 872b8cf2-c4cc-25f0-5418-ceb262b8d846
+		summarizeBy: none
+		sourceColumn: dimension
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 896469bf-577c-eb11-9353-686c4a04ebe2
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_order
+		dataType: int64
+		lineageTag: d687a05d-7c6a-86b4-a62f-7bba157b0a4d
+		summarizeBy: none
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step
+		dataType: string
+		lineageTag: f2d660ed-11b5-d5d6-378b-634112f0a453
+		summarizeBy: none
+		sourceColumn: step
+		sortByColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		lineageTag: 361b3522-cf75-0d3b-59fb-1a4e0945fc25
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column share_of_sessions
+		dataType: double
+		lineageTag: 1a906443-e953-cbdc-78cf-b66e3e847340
+		summarizeBy: none
+		sourceColumn: share_of_sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_conversion
+		dataType: double
+		lineageTag: c3b995ee-b67e-a716-a01e-3392e0e669de
+		summarizeBy: none
+		sourceColumn: step_conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition funnel_by_segment = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\funnel_by_segment.csv"), [Delimiter = ",", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"dimension", type text}, {"segment", type text}, {"step_order", Int64.Type}, {"step", type text}, {"sessions", Int64.Type}, {"share_of_sessions", type number}, {"step_conversion", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

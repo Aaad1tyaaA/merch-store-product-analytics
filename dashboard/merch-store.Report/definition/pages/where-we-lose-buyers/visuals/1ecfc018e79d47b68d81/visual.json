@@ -1,0 +1,125 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+  "name": "1ecfc018e79d47b68d81",
+  "position": {
+    "x": 430,
+    "y": 175,
+    "z": 1056,
+    "height": 530,
+    "width": 420,
+    "tabOrder": 1056
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "revenue_at_stake"
+                    }
+                  },
+                  "Property": "step"
+                }
+              },
+              "queryRef": "revenue_at_stake.step",
+              "nativeQueryRef": "step",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "revenue_at_stake"
+                    }
+                  },
+                  "Property": "USD at stake (low)"
+                }
+              },
+              "queryRef": "revenue_at_stake.USD at stake (low)",
+              "nativeQueryRef": "USD at stake (low)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "revenue_at_stake"
+                    }
+                  },
+                  "Property": "USD at stake (base)"
+                }
+              },
+              "queryRef": "revenue_at_stake.USD at stake (base)",
+              "nativeQueryRef": "USD at stake (base)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "revenue_at_stake"
+                    }
+                  },
+                  "Property": "USD at stake (high)"
+                }
+              },
+              "queryRef": "revenue_at_stake.USD at stake (high)",
+              "nativeQueryRef": "USD at stake (high)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "revenue_at_stake"
+                  }
+                },
+                "Property": "step"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'USD per 30 days from +1 point at each step'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,66 @@
+table activation_odds
+	lineageTag: b671b980-06eb-781f-7a69-c2a87892f963
+
+	measure 'Odds ratio' = AVERAGE(activation_odds[odds_ratio])
+		formatString: 0.00
+		lineageTag: e06b0c39-4d0d-f75c-a961-78ef27632b7c
+
+	measure 'CI low' = AVERAGE(activation_odds[ci_low])
+		formatString: 0.00
+		lineageTag: e78222d6-9fc1-e305-01e2-e6ecab85c9eb
+
+	measure 'CI high' = AVERAGE(activation_odds[ci_high])
+		formatString: 0.00
+		lineageTag: faec68a0-a10b-ac0a-68a5-65ac6cec9073
+
+	column term
+		dataType: string
+		lineageTag: aa7593ec-7184-0a85-18e2-1b6d0e538efd
+		summarizeBy: none
+		sourceColumn: term
+
+		annotation SummarizationSetBy = Automatic
+
+	column odds_ratio
+		dataType: double
+		lineageTag: 080d0cad-c697-faad-c83a-605f1a5bdd5c
+		summarizeBy: none
+		sourceColumn: odds_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_low
+		dataType: double
+		lineageTag: 7193f022-2b44-ae1d-0529-2269e246854a
+		summarizeBy: none
+		sourceColumn: ci_low
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_high
+		dataType: double
+		lineageTag: 769918d8-13b6-1119-5512-7bbe74050200
+		summarizeBy: none
+		sourceColumn: ci_high
+
+		annotation SummarizationSetBy = Automatic
+
+	column p_value
+		dataType: double
+		lineageTag: 967703ba-72da-7124-ae77-fc665eb81d82
+		summarizeBy: none
+		sourceColumn: p_value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition activation_odds = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\activation_odds.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"term", type text}, {"odds_ratio", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

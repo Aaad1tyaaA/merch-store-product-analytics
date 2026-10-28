@@ -1,0 +1,59 @@
+table retention_cohorts
+	lineageTag: bbc2a1d0-bf4d-7e75-25d9-3ad0626d438d
+
+	measure Retention = AVERAGE(retention_cohorts[retention])
+		formatString: 0.0%
+		lineageTag: c501ec53-d6f3-0ffc-76ca-9627a6335726
+
+	column cohort_week
+		dataType: dateTime
+		lineageTag: 7388678d-712e-6fe6-5484-70e26c1c93b8
+		summarizeBy: none
+		sourceColumn: cohort_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_users
+		dataType: int64
+		lineageTag: 95d6763b-0690-f7aa-a522-59c5f133c789
+		summarizeBy: none
+		sourceColumn: cohort_users
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_number
+		dataType: int64
+		lineageTag: d72437b1-1fab-6295-0d6b-4092aaf861c6
+		summarizeBy: none
+		sourceColumn: week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_users
+		dataType: int64
+		lineageTag: be3c69bd-cf21-9657-0e87-de55a89cc525
+		summarizeBy: none
+		sourceColumn: active_users
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention
+		dataType: double
+		lineageTag: d331a1a1-9f71-50ee-2740-04c965e42333
+		summarizeBy: none
+		sourceColumn: retention
+
+		annotation SummarizationSetBy = Automatic
+
+	partition retention_cohorts = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\retention_cohorts.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"cohort_week", type date}, {"cohort_users", Int64.Type}, {"week_number", Int64.Type}, {"active_users", Int64.Type}, {"retention", type number}}, "en-US"),
+					Filtered = Table.SelectRows(Typed, each [week_number] >= 1 and [week_number] <= 8)
+				in
+					Filtered
+
+	annotation PBI_ResultType = Table

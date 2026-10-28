@@ -1,0 +1,67 @@
+table funnel_overall
+	lineageTag: ce5ac924-677c-23a3-db02-16aa073258a8
+
+	measure 'Funnel sessions' = SUM(funnel_overall[sessions])
+		formatString: #,0
+		lineageTag: b5c31972-10da-3fd1-5cba-347a2c9dd9f9
+
+	column step_order
+		dataType: int64
+		lineageTag: fd5125c8-24c8-d47b-5c70-c16c1b75f07f
+		summarizeBy: none
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step
+		dataType: string
+		lineageTag: 2c8cef19-4ea8-2bf2-c12f-00a3e758d468
+		summarizeBy: none
+		sourceColumn: step
+		sortByColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		lineageTag: 1d8fb54e-1d14-c9d0-53ac-5d2052279980
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column share_of_sessions
+		dataType: double
+		lineageTag: d291f5c7-10d6-ab85-2220-b0cabdf6a966
+		summarizeBy: none
+		sourceColumn: share_of_sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_conversion
+		dataType: double
+		lineageTag: 6802bd04-89cf-7ef3-c4c8-225a34acb04e
+		summarizeBy: none
+		sourceColumn: step_conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions_lost
+		dataType: double
+		lineageTag: 7246def3-6caf-5987-d817-52ba13b4839d
+		summarizeBy: none
+		sourceColumn: sessions_lost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition funnel_overall = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\funnel_overall.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"step_order", Int64.Type}, {"step", type text}, {"sessions", Int64.Type}, {"share_of_sessions", type number}, {"step_conversion", type number}, {"sessions_lost", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

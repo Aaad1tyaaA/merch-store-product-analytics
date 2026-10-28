@@ -1,0 +1,107 @@
+table revenue_at_stake
+	lineageTag: 92c49de8-6f18-4eb5-e620-00a4be2ebf40
+
+	measure 'USD at stake (low)' = SUM(revenue_at_stake[usd_low])
+		formatString: \$#,0
+		lineageTag: d70e87e2-33ce-6b24-11d5-ea16e8d2b576
+
+	measure 'USD at stake (base)' = SUM(revenue_at_stake[usd_base])
+		formatString: \$#,0
+		lineageTag: cc30bcae-108d-a57c-3b54-67d8ad1bcebc
+
+	measure 'USD at stake (high)' = SUM(revenue_at_stake[usd_high])
+		formatString: \$#,0
+		lineageTag: 9ceb4bc1-5fec-4b73-2f52-f93d2442258d
+
+	column step_order
+		dataType: int64
+		lineageTag: 346274fc-6b82-3a42-1075-6574e23e8837
+		summarizeBy: none
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step
+		dataType: string
+		lineageTag: 54344a7e-2c44-5942-0c59-497ef485a31c
+		summarizeBy: none
+		sourceColumn: step
+		sortByColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_conversion
+		dataType: double
+		lineageTag: c84733fb-d497-e1b9-3eb9-6e65dbaef6fb
+		summarizeBy: none
+		sourceColumn: step_conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	column drop_rate
+		dataType: double
+		lineageTag: 91f1e168-4afd-eb3e-b6c9-83ad0679b9d4
+		summarizeBy: none
+		sourceColumn: drop_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column usd_low
+		dataType: double
+		lineageTag: 2b46c052-61bc-466e-7912-d4ba644b775c
+		summarizeBy: none
+		sourceColumn: usd_low
+
+		annotation SummarizationSetBy = Automatic
+
+	column usd_base
+		dataType: double
+		lineageTag: 40b19b0d-1d84-0085-a10b-4f42f5ee26f6
+		summarizeBy: none
+		sourceColumn: usd_base
+
+		annotation SummarizationSetBy = Automatic
+
+	column usd_high
+		dataType: double
+		lineageTag: e96c5aca-97e0-4d34-b095-d36285a7e133
+		summarizeBy: none
+		sourceColumn: usd_high
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank_by_usd
+		dataType: int64
+		lineageTag: e90e6c87-b924-fc3e-aac7-bae6aa533365
+		summarizeBy: none
+		sourceColumn: rank_by_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank_by_drop
+		dataType: int64
+		lineageTag: c1721380-3db1-d46a-81f8-2de6a13ac7d7
+		summarizeBy: none
+		sourceColumn: rank_by_drop
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank_by_sessions_lost
+		dataType: int64
+		lineageTag: 2f69ffeb-14ab-425e-3228-c73a0e455b51
+		summarizeBy: none
+		sourceColumn: rank_by_sessions_lost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition revenue_at_stake = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\revenue_at_stake.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"step_order", Int64.Type}, {"step", type text}, {"step_conversion", type number}, {"drop_rate", type number}, {"usd_low", type number}, {"usd_base", type number}, {"usd_high", type number}, {"rank_by_usd", Int64.Type}, {"rank_by_drop", Int64.Type}, {"rank_by_sessions_lost", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

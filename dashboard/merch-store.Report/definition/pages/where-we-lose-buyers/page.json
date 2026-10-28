@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.1.0/schema.json",
+  "name": "where-we-lose-buyers",
+  "displayName": "Where we lose buyers",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+  "name": "ff15f51a24398f3150c5",
+  "position": {
+    "x": 850,
+    "y": 380,
+    "z": 1054,
+    "height": 325,
+    "width": 410,
+    "tabOrder": 1054
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "power_table"
+                    }
+                  },
+                  "Property": "relative_mde"
+                }
+              },
+              "queryRef": "power_table.relative_mde",
+              "nativeQueryRef": "relative_mde",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "power_table"
+                    }
+                  },
+                  "Property": "Users per arm"
+                }
+              },
+              "queryRef": "power_table.Users per arm",
+              "nativeQueryRef": "Users per arm"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "power_table"
+                    }
+                  },
+                  "Property": "Weeks needed"
+                }
+              },
+              "queryRef": "power_table.Weeks needed",
+              "nativeQueryRef": "Weeks needed"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Test plan: users per arm and weeks by MDE'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

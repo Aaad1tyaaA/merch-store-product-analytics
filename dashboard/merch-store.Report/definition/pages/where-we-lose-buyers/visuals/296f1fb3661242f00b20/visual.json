@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+  "name": "296f1fb3661242f00b20",
+  "position": {
+    "x": 20,
+    "y": 175,
+    "z": 1065,
+    "height": 530,
+    "width": 400,
+    "tabOrder": 1065
+  },
+  "visual": {
+    "visualType": "funnel",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "funnel_overall"
+                    }
+                  },
+                  "Property": "step"
+                }
+              },
+              "queryRef": "funnel_overall.step",
+              "nativeQueryRef": "step",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "funnel_overall"
+                    }
+                  },
+                  "Property": "Funnel sessions"
+                }
+              },
+              "queryRef": "funnel_overall.Funnel sessions",
+              "nativeQueryRef": "Funnel sessions"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "funnel_overall"
+                  }
+                },
+                "Property": "step"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sessions reaching each step'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

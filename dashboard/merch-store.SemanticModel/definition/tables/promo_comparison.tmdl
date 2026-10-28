@@ -1,0 +1,51 @@
+table promo_comparison
+	lineageTag: cf07523a-b536-c38f-2ea2-86ee083f2264
+
+	measure Conversion = AVERAGE(promo_comparison[conversion])
+		formatString: 0.00%
+		lineageTag: c5a72a7c-1373-0df5-756b-edd8c7d8267d
+
+	column basis
+		dataType: string
+		lineageTag: 339232e2-8365-8a98-dc64-2d48b3a064c9
+		summarizeBy: none
+		sourceColumn: basis
+		sortByColumn: basis_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column basis_order
+		dataType: int64
+		lineageTag: b39e1d93-c84a-de2f-0a83-c29dc65a01d6
+		summarizeBy: none
+		sourceColumn: basis_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column group
+		dataType: string
+		lineageTag: fd5aa657-851e-4ee5-42fb-2aa630342eca
+		summarizeBy: none
+		sourceColumn: group
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversion
+		dataType: double
+		lineageTag: d8002aa5-3dd5-3546-5eb4-0d85cc0fefa5
+		summarizeBy: none
+		sourceColumn: conversion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition promo_comparison = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\promo_comparison.csv"), [Delimiter = ",", Columns = 4, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"basis", type text}, {"basis_order", Int64.Type}, {"group", type text}, {"conversion", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

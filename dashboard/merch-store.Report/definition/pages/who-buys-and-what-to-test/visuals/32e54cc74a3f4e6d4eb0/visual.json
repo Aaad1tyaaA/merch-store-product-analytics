@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+  "name": "32e54cc74a3f4e6d4eb0",
+  "position": {
+    "x": 20,
+    "y": 60,
+    "z": 1044,
+    "height": 310,
+    "width": 420,
+    "tabOrder": 1044
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "activation_odds"
+                    }
+                  },
+                  "Property": "term"
+                }
+              },
+              "queryRef": "activation_odds.term",
+              "nativeQueryRef": "term",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "activation_odds"
+                    }
+                  },
+                  "Property": "Odds ratio"
+                }
+              },
+              "queryRef": "activation_odds.Odds ratio",
+              "nativeQueryRef": "Odds ratio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "activation_odds"
+                    }
+                  },
+                  "Property": "CI low"
+                }
+              },
+              "queryRef": "activation_odds.CI low",
+              "nativeQueryRef": "CI low"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "activation_odds"
+                    }
+                  },
+                  "Property": "CI high"
+                }
+              },
+              "queryRef": "activation_odds.CI high",
+              "nativeQueryRef": "CI high"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Odds of buying within 30 days (first-session non-buyers)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

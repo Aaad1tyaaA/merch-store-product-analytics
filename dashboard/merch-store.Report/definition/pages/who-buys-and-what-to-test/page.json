@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.1.0/schema.json",
+  "name": "who-buys-and-what-to-test",
+  "displayName": "Who buys and what to test",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+  "name": "f9fd8efa687b36ef2810",
+  "position": {
+    "x": 20,
+    "y": 380,
+    "z": 1083,
+    "height": 325,
+    "width": 420,
+    "tabOrder": 1083
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_quality"
+                    }
+                  },
+                  "Property": "channel"
+                }
+              },
+              "queryRef": "channel_quality.channel",
+              "nativeQueryRef": "channel",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_quality"
+                    }
+                  },
+                  "Property": "Share of users"
+                }
+              },
+              "queryRef": "channel_quality.Share of users",
+              "nativeQueryRef": "Share of users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "channel_quality"
+                    }
+                  },
+                  "Property": "Share of revenue"
+                }
+              },
+              "queryRef": "channel_quality.Share of revenue",
+              "nativeQueryRef": "Share of revenue"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'First-touch channel: share of new users vs 56-day revenue'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
