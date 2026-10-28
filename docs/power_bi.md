@@ -16,10 +16,10 @@ Sessions from 26 Nov 2020 to 25 Jan 2021 (the funnel window). Notebook sources a
 
 | Visual | Expected value |
 |---|---|
-| Sessions card | 248,669 [03, totals] |
-| Orders card | 3,540 [03, totals] |
+| Total sessions card | 248,669 [03, totals] |
+| Total orders card | 3,540 [03, totals] |
 | Session conversion card | 1.29% (3,196 ÷ 248,669 = 1.2852%) [03, totals] |
-| AOV card | $69.25 [03, totals] |
+| Average order value card | $69.25 [03, totals] |
 | Funnel | 248,669 → 50,255 → 13,636 → 6,936 → 4,592 → 3,196 [03, funnel] |
 | Revenue at stake, base | View item $5,966; Add to cart $4,443; Begin checkout $2,370; Add payment info $1,821; Order $1,732 [03] |
 | Revenue at stake, low / high (View item) | $2,983 / $7,296 [03] |

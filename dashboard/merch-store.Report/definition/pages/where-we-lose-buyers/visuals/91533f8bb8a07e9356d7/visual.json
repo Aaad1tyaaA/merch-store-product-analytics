@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
-  "name": "487a774291ec2b9c23c0",
+  "name": "91533f8bb8a07e9356d7",
   "position": {
-    "x": 335,
+    "x": 20,
     "y": 60,
-    "z": 1117,
+    "z": 1193,
     "height": 100,
     "width": 300,
-    "tabOrder": 1117
+    "tabOrder": 1193
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "kpis"
                     }
                   },
-                  "Property": "Orders"
+                  "Property": "Total sessions"
                 }
               },
-              "queryRef": "kpis.Orders",
-              "nativeQueryRef": "Orders"
+              "queryRef": "kpis.Total sessions",
+              "nativeQueryRef": "Total sessions"
             }
           ]
         }
@@ -47,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Orders'"
+                  "Value": "'Total sessions'"
                 }
               }
             }

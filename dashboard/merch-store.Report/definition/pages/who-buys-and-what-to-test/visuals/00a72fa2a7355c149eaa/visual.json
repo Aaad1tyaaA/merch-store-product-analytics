@@ -61,11 +61,11 @@
                       "Entity": "promo_comparison"
                     }
                   },
-                  "Property": "Conversion"
+                  "Property": "Promo conversion"
                 }
               },
-              "queryRef": "promo_comparison.Conversion",
-              "nativeQueryRef": "Conversion"
+              "queryRef": "promo_comparison.Promo conversion",
+              "nativeQueryRef": "Promo conversion"
             }
           ]
         }

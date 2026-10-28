@@ -1,9 +1,9 @@
 table promo_comparison
 	lineageTag: cf07523a-b536-c38f-2ea2-86ee083f2264
 
-	measure Conversion = AVERAGE(promo_comparison[conversion])
+	measure 'Promo conversion' = AVERAGE(promo_comparison[conversion])
 		formatString: 0.00%
-		lineageTag: c5a72a7c-1373-0df5-756b-edd8c7d8267d
+		lineageTag: 122f4f6f-b0d6-1dc5-8891-cc45ae1ec8b7
 
 	column basis
 		dataType: string

@@ -1,9 +1,9 @@
 table retention_cohorts
 	lineageTag: bbc2a1d0-bf4d-7e75-25d9-3ad0626d438d
 
-	measure Retention = AVERAGE(retention_cohorts[retention])
+	measure 'Retention rate' = AVERAGE(retention_cohorts[retention])
 		formatString: 0.0%
-		lineageTag: c501ec53-d6f3-0ffc-76ca-9627a6335726
+		lineageTag: 993923af-3db9-9725-f498-4609b85d6b2f
 
 	column cohort_week
 		dataType: dateTime

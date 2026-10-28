@@ -61,11 +61,11 @@
                       "Entity": "retention_cohorts"
                     }
                   },
-                  "Property": "Retention"
+                  "Property": "Retention rate"
                 }
               },
-              "queryRef": "retention_cohorts.Retention",
-              "nativeQueryRef": "Retention"
+              "queryRef": "retention_cohorts.Retention rate",
+              "nativeQueryRef": "Retention rate"
             }
           ]
         }
@@ -87,7 +87,7 @@
                               "Entity": "retention_cohorts"
                             }
                           },
-                          "Property": "Retention"
+                          "Property": "Retention rate"
                         }
                       },
                       "FillRule": {
@@ -129,7 +129,7 @@
                 }
               }
             ],
-            "metadata": "retention_cohorts.Retention"
+            "metadata": "retention_cohorts.Retention rate"
           }
         }
       ]

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
-  "name": "e9fcdba9e7eedbce929e",
+  "name": "4def2b693741e9a4e123",
   "position": {
     "x": 965,
     "y": 60,
-    "z": 1088,
+    "z": 1244,
     "height": 100,
     "width": 300,
-    "tabOrder": 1088
+    "tabOrder": 1244
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "kpis"
                     }
                   },
-                  "Property": "AOV"
+                  "Property": "Average order value"
                 }
               },
-              "queryRef": "kpis.AOV",
-              "nativeQueryRef": "AOV"
+              "queryRef": "kpis.Average order value",
+              "nativeQueryRef": "Average order value"
             }
           ]
         }
@@ -47,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'AOV'"
+                  "Value": "'Average order value'"
                 }
               }
             }

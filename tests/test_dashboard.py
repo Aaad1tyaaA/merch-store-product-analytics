@@ -47,6 +47,9 @@ def test_tmdl_columns_match_csv_and_dax_references_resolve():
             assert ref_col in model[ref_table]['columns'], f'{ref_table}[{ref_col}]'
         for ref in re.findall(r"(?<![\w\]])\[([^\]]+)\]", dax):
             assert ref in all_measures, ref
+    columns = {c.lower() for t in model.values() for c in t['columns']}
+    clashes = [m for m in all_measures if m.lower() in columns]
+    assert not clashes, f'measure names must differ from column names: {clashes}'
     model_text = (MODEL / 'definition/model.tmdl').read_text(encoding='utf-8')
     assert all(f'ref table {t}' in model_text for t in TABLES)
 
@@ -66,10 +69,10 @@ def test_measures_match_analysis_totals():
     t = load_tables()
     kpis = pd.read_csv(ROOT / 'app/data/kpis.csv').iloc[0]
     values = {name: fn(t) for name, (_, _, _, fn) in MEASURES.items() if fn}
-    assert values['Sessions'] == kpis.sessions
-    assert values['Orders'] == kpis.orders
-    assert values['Revenue'] == pytest.approx(kpis.revenue_usd)
-    assert values['AOV'] == pytest.approx(kpis.aov, abs=1e-9)
+    assert values['Total sessions'] == kpis.sessions
+    assert values['Total orders'] == kpis.orders
+    assert values['Total revenue'] == pytest.approx(kpis.revenue_usd)
+    assert values['Average order value'] == pytest.approx(kpis.aov, abs=1e-9)
     # conversion from the funnel table equals conversion computed from sessions directly
     assert values['Session conversion'] == pytest.approx(kpis.session_conversion, abs=1e-12)
     assert values['Funnel sessions'] == t['funnel_overall'].sessions.sum()

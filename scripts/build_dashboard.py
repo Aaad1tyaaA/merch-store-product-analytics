@@ -34,10 +34,10 @@ def step_sessions(t, step):
 
 # name: (table, DAX, format, pandas equivalent of the measure's total)
 MEASURES = {
-    'Sessions': ('kpis', 'SUM(kpis[sessions])', '#,0', lambda t: t['kpis'].sessions.sum()),
-    'Orders': ('kpis', 'SUM(kpis[orders])', '#,0', lambda t: t['kpis'].orders.sum()),
-    'Revenue': ('kpis', 'SUM(kpis[revenue_usd])', '\\$#,0', lambda t: t['kpis'].revenue_usd.sum()),
-    'AOV': ('kpis', 'DIVIDE([Revenue], [Orders])', '\\$#,0.00', lambda t: t['kpis'].revenue_usd.sum() / t['kpis'].orders.sum()),
+    'Total sessions': ('kpis', 'SUM(kpis[sessions])', '#,0', lambda t: t['kpis'].sessions.sum()),
+    'Total orders': ('kpis', 'SUM(kpis[orders])', '#,0', lambda t: t['kpis'].orders.sum()),
+    'Total revenue': ('kpis', 'SUM(kpis[revenue_usd])', '\\$#,0', lambda t: t['kpis'].revenue_usd.sum()),
+    'Average order value': ('kpis', 'DIVIDE([Total revenue], [Total orders])', '\\$#,0.00', lambda t: t['kpis'].revenue_usd.sum() / t['kpis'].orders.sum()),
     'Session conversion': ('kpis',
         'DIVIDE(CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 6), '
         'CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 1))',
@@ -50,10 +50,10 @@ MEASURES = {
     'Odds ratio': ('activation_odds', 'AVERAGE(activation_odds[odds_ratio])', '0.00', None),
     'CI low': ('activation_odds', 'AVERAGE(activation_odds[ci_low])', '0.00', None),
     'CI high': ('activation_odds', 'AVERAGE(activation_odds[ci_high])', '0.00', None),
-    'Retention': ('retention_cohorts', 'AVERAGE(retention_cohorts[retention])', '0.0%', None),
+    'Retention rate': ('retention_cohorts', 'AVERAGE(retention_cohorts[retention])', '0.0%', None),
     'Share of users': ('channel_quality', 'SUM(channel_quality[share_of_users])', '0.0%', lambda t: t['channel_quality'].share_of_users.sum()),
     'Share of revenue': ('channel_quality', 'SUM(channel_quality[share_of_revenue])', '0.0%', lambda t: t['channel_quality'].share_of_revenue.sum()),
-    'Conversion': ('promo_comparison', 'AVERAGE(promo_comparison[conversion])', '0.00%', None),
+    'Promo conversion': ('promo_comparison', 'AVERAGE(promo_comparison[conversion])', '0.00%', None),
     'Users per arm': ('power_table', 'SUM(power_table[n_per_arm])', '#,0', None),
     'Weeks needed': ('power_table', 'SUM(power_table[weeks_needed])', '0', None),
 }
@@ -223,7 +223,7 @@ def page_one(kpis):
     p = 'where-we-lose-buyers'
     period = f"{pd.Timestamp(kpis.first_date):%d %b %Y} to {pd.Timestamp(kpis.last_date):%d %b %Y}"
     cards = [visual(p, f'card-{n}', 'card', (20 + i * 315, 60, 300, 100), {'Values': [m(n)]}, heading=n)
-             for i, n in enumerate(['Sessions', 'Orders', 'Session conversion', 'AOV'])]
+             for i, n in enumerate(['Total sessions', 'Total orders', 'Session conversion', 'Average order value'])]
     return p, 'Where we lose buyers', [
         textbox(p, 'title', (20, 10, 1240, 45), f'Where we lose buyers: sessions {period}'),
         *cards,
@@ -249,13 +249,13 @@ def page_two():
                {'Values': [c('activation_odds', 'term'), m('Odds ratio'), m('CI low'), m('CI high')]},
                heading='Odds of buying within 30 days (first-session non-buyers)'),
         visual(p, 'retention', 'pivotTable', (450, 60, 810, 310),
-               {'Rows': [c('retention_cohorts', 'cohort_week')], 'Columns': [c('retention_cohorts', 'week_number')], 'Values': [m('Retention')]},
-               objects=gradient('Retention'), heading='Weekly retention of new users by first week'),
+               {'Rows': [c('retention_cohorts', 'cohort_week')], 'Columns': [c('retention_cohorts', 'week_number')], 'Values': [m('Retention rate')]},
+               objects=gradient('Retention rate'), heading='Weekly retention of new users by first week'),
         visual(p, 'channels', 'clusteredBarChart', (20, 380, 420, 325),
                {'Category': [c('channel_quality', 'channel')], 'Y': [m('Share of users'), m('Share of revenue')]},
                heading='First-touch channel: share of new users vs 56-day revenue'),
         visual(p, 'promo', 'clusteredColumnChart', (450, 380, 390, 325),
-               {'Category': [c('promo_comparison', 'basis')], 'Series': [c('promo_comparison', 'group')], 'Y': [m('Conversion')]},
+               {'Category': [c('promo_comparison', 'basis')], 'Series': [c('promo_comparison', 'group')], 'Y': [m('Promo conversion')]},
                heading='Promotion clickers convert better, raw and adjusted', sort=field('promo_comparison', 'basis')),
         visual(p, 'power', 'tableEx', (850, 380, 410, 325),
                {'Values': [c('power_table', 'relative_mde'), m('Users per arm'), m('Weeks needed')]},

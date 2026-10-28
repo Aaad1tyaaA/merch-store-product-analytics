@@ -1,21 +1,21 @@
 table kpis
 	lineageTag: ffb6dc6d-b8e4-e545-99b0-f1ff937bdf85
 
-	measure Sessions = SUM(kpis[sessions])
+	measure 'Total sessions' = SUM(kpis[sessions])
 		formatString: #,0
-		lineageTag: ca464773-d984-9a69-d649-bf1306eab474
+		lineageTag: b9c1ebf5-6494-2030-679f-69bae62974a1
 
-	measure Orders = SUM(kpis[orders])
+	measure 'Total orders' = SUM(kpis[orders])
 		formatString: #,0
-		lineageTag: 47b67709-8152-dd3a-af52-4395116a8406
+		lineageTag: beae39f0-c234-2b9e-13e0-13ea43db2333
 
-	measure Revenue = SUM(kpis[revenue_usd])
+	measure 'Total revenue' = SUM(kpis[revenue_usd])
 		formatString: \$#,0
-		lineageTag: d96f5365-078f-85f3-b589-695cd9baf7e4
+		lineageTag: cbfd4943-e045-bb5f-fca0-7d5638781d2b
 
-	measure AOV = DIVIDE([Revenue], [Orders])
+	measure 'Average order value' = DIVIDE([Total revenue], [Total orders])
 		formatString: \$#,0.00
-		lineageTag: 249d6d8a-76f7-1052-1764-583d16ca00b8
+		lineageTag: b9f864f8-0436-4ebe-27bd-9c8c065885c4
 
 	measure 'Session conversion' = DIVIDE(CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 6), CALCULATE(SUM(funnel_overall[sessions]), funnel_overall[step_order] = 1))
 		formatString: 0.00%
