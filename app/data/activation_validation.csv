@@ -1,0 +1,2 @@
+train_users,train_buyers,test_users,test_buyers,auc,top_decile_rate,test_rate,top_decile_lift,top_decile_share_of_buyers
+49449,453,49104,312,0.869208999688894,0.03991040521278762,0.00635386119257087,6.2812837742587275,0.6282051282051282
