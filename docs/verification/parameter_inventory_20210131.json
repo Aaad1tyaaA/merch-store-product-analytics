@@ -1,0 +1,152 @@
+[
+  {
+    "event_name": "page_view",
+    "parameter_key": "debug_mode",
+    "parameter_entries": "9498"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "ga_session_id",
+    "parameter_entries": "9498"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "ga_session_number",
+    "parameter_entries": "9498"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "page_location",
+    "parameter_entries": "9498"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "session_engaged",
+    "parameter_entries": "9498"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "page_title",
+    "parameter_entries": "9426"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "engaged_session_event",
+    "parameter_entries": "9214"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "page_referrer",
+    "parameter_entries": "7209"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "debug_mode",
+    "parameter_entries": "5005"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "ga_session_id",
+    "parameter_entries": "5005"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "ga_session_number",
+    "parameter_entries": "5005"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "page_location",
+    "parameter_entries": "5005"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "session_engaged",
+    "parameter_entries": "5005"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "page_title",
+    "parameter_entries": "4977"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "engagement_time_msec",
+    "parameter_entries": "4818"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "all_data",
+    "parameter_entries": "4804"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "clean_event",
+    "parameter_entries": "4804"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "engaged_session_event",
+    "parameter_entries": "4694"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "page_referrer",
+    "parameter_entries": "4212"
+  },
+  {
+    "event_name": "page_view",
+    "parameter_key": "engagement_time_msec",
+    "parameter_entries": "4124"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "debug_mode",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "ga_session_id",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "ga_session_number",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "page_location",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "percent_scrolled",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "session_engaged",
+    "parameter_entries": "2870"
+  },
+  {
+    "event_name": "scroll",
+    "parameter_key": "page_title",
+    "parameter_entries": "2853"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "campaign",
+    "parameter_entries": "2830"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "medium",
+    "parameter_entries": "2830"
+  },
+  {
+    "event_name": "user_engagement",
+    "parameter_key": "source",
+    "parameter_entries": "2830"
+  }
+]

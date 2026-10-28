@@ -1,0 +1,79 @@
+{
+  "dataset": "bigquery-public-data.ga4_obfuscated_sample_ecommerce",
+  "execution_project": "macro-virtue-457517-u9",
+  "location": "US",
+  "files": {
+    "data/parquet/items_flat_202101.parquet": {
+      "rows": 1036149,
+      "sha256": "4344949c6d5d8b32872ccb306d64a2a8301a31e7a900a855c73e9eeedb344081",
+      "bytes": 60872442,
+      "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+      "job_id": "job_tfjanAb-ouVcEnzN9t92C2UYRNj-",
+      "total_bytes_processed": 957086782,
+      "cache_hit": false,
+      "source_month": "202101",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nitem_offset: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_ts: timestamp[us, tz=UTC]\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\ntransaction_id: string\nitem_id: string\nitem_name: string\nitem_brand: string\nitem_variant: string\nitem_category: string\nprice_usd: double\nquantity: int64\nitem_revenue_usd: double\npromotion_id: string\npromotion_name: string\ncreative_name: string\ncreative_slot: string",
+      "downloaded_at_utc": "2026-10-28T16:55:18.342031+00:00"
+    },
+    "data/parquet/items_flat_202011.parquet": {
+      "rows": 1096733,
+      "sha256": "2f10d7141eed42ae2ebb8820990f407ad1d970db349b861a9d73a956986d3906",
+      "bytes": 64197207,
+      "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+      "job_id": "job_iONoC0h_MEUdifEvswaoDoES8qOf",
+      "total_bytes_processed": 1178208552,
+      "cache_hit": false,
+      "source_month": "202011",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nitem_offset: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_ts: timestamp[us, tz=UTC]\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\ntransaction_id: string\nitem_id: string\nitem_name: string\nitem_brand: string\nitem_variant: string\nitem_category: string\nprice_usd: double\nquantity: int64\nitem_revenue_usd: double\npromotion_id: string\npromotion_name: string\ncreative_name: string\ncreative_slot: string",
+      "downloaded_at_utc": "2026-10-28T16:56:09.406950+00:00"
+    },
+    "data/parquet/events_flat_202101.parquet": {
+      "rows": 1210147,
+      "sha256": "e82cd5905a621bbe90bf7fb835106b5ab994539da07904db1f2b40de42bf505d",
+      "bytes": 145395044,
+      "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+      "job_id": "job_bxC1hhtNPGhFrICps1oiMUJ_iG4g",
+      "total_bytes_processed": 957086782,
+      "cache_hit": false,
+      "source_month": "202101",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_timestamp_micros: int64\nevent_ts: timestamp[us, tz=UTC]\nevent_previous_timestamp: int64\nevent_bundle_sequence_id: int64\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\nga_session_id_text: string\nga_session_number: int64\nga_session_number_text: string\nengagement_time_msec: int64\npage_title: string\nfirst_source: string\nfirst_medium: string\nfirst_campaign: string\ndevice_category: string\nos: string\nbrowser: string\ncountry: string\ntransaction_id: string\npurchase_revenue_usd: double\ntotal_item_quantity: int64\nn_items: int64\npromotion_names_json: string",
+      "downloaded_at_utc": "2026-10-28T17:05:08.623071+00:00"
+    },
+    "data/parquet/items_flat_202012.parquet": {
+      "rows": 1849850,
+      "sha256": "b5387efef2bf55173bc85c6c203f36a52e0f95271dc13212f39a798d86f64eb8",
+      "bytes": 131061037,
+      "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+      "job_id": "job_eC6MRyvd8XyzHqJvG_e7Yq6aJW-5",
+      "total_bytes_processed": 1448362520,
+      "cache_hit": false,
+      "source_month": "202012",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nitem_offset: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_ts: timestamp[us, tz=UTC]\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\ntransaction_id: string\nitem_id: string\nitem_name: string\nitem_brand: string\nitem_variant: string\nitem_category: string\nprice_usd: double\nquantity: int64\nitem_revenue_usd: double\npromotion_id: string\npromotion_name: string\ncreative_name: string\ncreative_slot: string",
+      "downloaded_at_utc": "2026-10-28T17:09:18.815515+00:00"
+    },
+    "data/parquet/events_flat_202011.parquet": {
+      "rows": 1472712,
+      "sha256": "99e9c9c617ca8a23f6350ed92eb450a92cdbaeb8db036087b6f9801154e30c09",
+      "bytes": 175495910,
+      "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+      "job_id": "job_ffQTp3pcdbxE_VbAeJQkxCsyemgS",
+      "total_bytes_processed": 1178208552,
+      "cache_hit": false,
+      "source_month": "202011",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_timestamp_micros: int64\nevent_ts: timestamp[us, tz=UTC]\nevent_previous_timestamp: int64\nevent_bundle_sequence_id: int64\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\nga_session_id_text: string\nga_session_number: int64\nga_session_number_text: string\nengagement_time_msec: int64\npage_title: string\nfirst_source: string\nfirst_medium: string\nfirst_campaign: string\ndevice_category: string\nos: string\nbrowser: string\ncountry: string\ntransaction_id: string\npurchase_revenue_usd: double\ntotal_item_quantity: int64\nn_items: int64\npromotion_names_json: string",
+      "downloaded_at_utc": "2026-10-28T17:10:18.095542+00:00"
+    },
+    "data/parquet/events_flat_202012.parquet": {
+      "rows": 1612725,
+      "sha256": "b2cc608ccf50ef3be4e208d15b93e3c498a0555f6c4ad84728b9b2acefcdd4db",
+      "bytes": 193229609,
+      "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+      "job_id": "job_1AiRM6bZOCrrn0tPJeeMhYRUJfNW",
+      "total_bytes_processed": 1448362520,
+      "cache_hit": false,
+      "source_month": "202012",
+      "schema": "event_id: string\nsource_table_suffix: string\nsource_event_fingerprint: string\nsource_duplicate_ordinal: int64\nevent_date_raw: string\nevent_date: date32[day]\nevent_timestamp_micros: int64\nevent_ts: timestamp[us, tz=UTC]\nevent_previous_timestamp: int64\nevent_bundle_sequence_id: int64\nevent_name: string\nuser_pseudo_id: string\nga_session_id: int64\nga_session_id_text: string\nga_session_number: int64\nga_session_number_text: string\nengagement_time_msec: int64\npage_title: string\nfirst_source: string\nfirst_medium: string\nfirst_campaign: string\ndevice_category: string\nos: string\nbrowser: string\ncountry: string\ntransaction_id: string\npurchase_revenue_usd: double\ntotal_item_quantity: int64\nn_items: int64\npromotion_names_json: string",
+      "downloaded_at_utc": "2026-10-28T17:12:45.408073+00:00"
+    }
+  }
+}

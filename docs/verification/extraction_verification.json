@@ -1,0 +1,129 @@
+{
+  "verified_at_utc": "2026-10-28T17:15:19.369492+00:00",
+  "database": "ga4.duckdb",
+  "database_sha256": "e64f30d970b9b3ee1faf021e18700541d8dd0164498571d17ade2c138c501f4e",
+  "source_manifest_sha256": "bbdea8df2c91d382185eb26b663ae6cca8e4b05a2c88038e0fb073d5255c6b28",
+  "checks": [
+    {
+      "name": "event_rows_match_source",
+      "passed": true,
+      "actual": 4295584,
+      "expected": 4295584
+    },
+    {
+      "name": "raw_users_match_source",
+      "passed": true,
+      "actual": 270154,
+      "expected": 270154
+    },
+    {
+      "name": "property_dates_match_source",
+      "passed": true,
+      "actual": 92,
+      "expected": 92
+    },
+    {
+      "name": "event_types_match_source",
+      "passed": true,
+      "actual": 17,
+      "expected": 17
+    },
+    {
+      "name": "item_rows_match_source",
+      "passed": true,
+      "actual": 3982732,
+      "expected": 3982732
+    },
+    {
+      "name": "event_id_unique",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "item_occurrence_unique",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "no_null_event_keys",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "items_have_parent_events",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "item_counts_match_each_parent",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "utc_timestamp_preserved",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "property_date_preserved",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "purchase_events_match_source",
+      "passed": true,
+      "actual": 5692,
+      "expected": 5692
+    },
+    {
+      "name": "raw_purchase_revenue_matches_source",
+      "passed": true,
+      "actual": 362165.0,
+      "expected": 362165.0
+    },
+    {
+      "name": "events_flat_202011_rows",
+      "passed": true,
+      "actual": 1472712,
+      "expected": 1472712
+    },
+    {
+      "name": "items_flat_202011_rows",
+      "passed": true,
+      "actual": 1096733,
+      "expected": 1096733
+    },
+    {
+      "name": "events_flat_202012_rows",
+      "passed": true,
+      "actual": 1612725,
+      "expected": 1612725
+    },
+    {
+      "name": "items_flat_202012_rows",
+      "passed": true,
+      "actual": 1849850,
+      "expected": 1849850
+    },
+    {
+      "name": "events_flat_202101_rows",
+      "passed": true,
+      "actual": 1210147,
+      "expected": 1210147
+    },
+    {
+      "name": "items_flat_202101_rows",
+      "passed": true,
+      "actual": 1036149,
+      "expected": 1036149
+    }
+  ],
+  "scope": "Raw events and item occurrences only; no session filtering or order deduplication applied."
+}

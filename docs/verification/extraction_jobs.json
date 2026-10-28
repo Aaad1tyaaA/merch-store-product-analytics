@@ -1,0 +1,38 @@
+{
+  "data/parquet/events_flat_202011.parquet": {
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+    "start": "20201101",
+    "end": "20201130",
+    "job_id": "job_ffQTp3pcdbxE_VbAeJQkxCsyemgS"
+  },
+  "data/parquet/events_flat_202012.parquet": {
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+    "start": "20201201",
+    "end": "20201231",
+    "job_id": "job_1AiRM6bZOCrrn0tPJeeMhYRUJfNW"
+  },
+  "data/parquet/events_flat_202101.parquet": {
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd",
+    "start": "20210101",
+    "end": "20210131",
+    "job_id": "job_bxC1hhtNPGhFrICps1oiMUJ_iG4g"
+  },
+  "data/parquet/items_flat_202011.parquet": {
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+    "start": "20201101",
+    "end": "20201130",
+    "job_id": "job_iONoC0h_MEUdifEvswaoDoES8qOf"
+  },
+  "data/parquet/items_flat_202012.parquet": {
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+    "start": "20201201",
+    "end": "20201231",
+    "job_id": "job_eC6MRyvd8XyzHqJvG_e7Yq6aJW-5"
+  },
+  "data/parquet/items_flat_202101.parquet": {
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0",
+    "start": "20210101",
+    "end": "20210131",
+    "job_id": "job_tfjanAb-ouVcEnzN9t92C2UYRNj-"
+  }
+}

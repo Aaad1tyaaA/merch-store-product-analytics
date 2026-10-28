@@ -1,0 +1,56 @@
+[
+  {
+    "name": "events_flat",
+    "start": "20201101",
+    "end": "20201130",
+    "path": "data/parquet/events_flat_202011.parquet",
+    "expected_rows": 1472712,
+    "estimated_bytes_processed": 1178208552,
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd"
+  },
+  {
+    "name": "events_flat",
+    "start": "20201201",
+    "end": "20201231",
+    "path": "data/parquet/events_flat_202012.parquet",
+    "expected_rows": 1612725,
+    "estimated_bytes_processed": 1448362520,
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd"
+  },
+  {
+    "name": "events_flat",
+    "start": "20210101",
+    "end": "20210131",
+    "path": "data/parquet/events_flat_202101.parquet",
+    "expected_rows": 1210147,
+    "estimated_bytes_processed": 957086782,
+    "sql_sha256": "73f8e1ced7e061ec91a581fc038a6badc00b2b02e3e50c2102b8cede6c16aecd"
+  },
+  {
+    "name": "items_flat",
+    "start": "20201101",
+    "end": "20201130",
+    "path": "data/parquet/items_flat_202011.parquet",
+    "expected_rows": 1096733,
+    "estimated_bytes_processed": 1178208552,
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0"
+  },
+  {
+    "name": "items_flat",
+    "start": "20201201",
+    "end": "20201231",
+    "path": "data/parquet/items_flat_202012.parquet",
+    "expected_rows": 1849850,
+    "estimated_bytes_processed": 1448362520,
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0"
+  },
+  {
+    "name": "items_flat",
+    "start": "20210101",
+    "end": "20210131",
+    "path": "data/parquet/items_flat_202101.parquet",
+    "expected_rows": 1036149,
+    "estimated_bytes_processed": 957086782,
+    "sql_sha256": "c14f051041cd0363da58841a821119858444489863e2c4a824c5db6040aee1f0"
+  }
+]

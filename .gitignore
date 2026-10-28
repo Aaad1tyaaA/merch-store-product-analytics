@@ -1,0 +1,17 @@
+/data/
+/exports/rows/
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.pbix
+*.abf
+**/.pbi/
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+.env.*
+*credentials*.json
+*token*.json
+/docs/verification/google_authorization*.png

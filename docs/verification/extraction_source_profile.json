@@ -1,0 +1,41 @@
+{
+  "sql_sha256": "6ac8296d776fc07ee4fdfeea55e1de0f97b623e16520bab5fe457d557a038f8e",
+  "job_id": "job_jG3XbaN4PaygqAmG1RIA4mMotQx6",
+  "job_url": "https://console.cloud.google.com/bigquery?pli=1&project=macro-virtue-457517-u9&ws=!1m5!1m4!1m3!1smacro-virtue-457517-u9!2sjob_jG3XbaN4PaygqAmG1RIA4mMotQx6!3sUS",
+  "location": "US",
+  "rows": [
+    {
+      "source_month": "202011",
+      "event_rows": "1472712",
+      "property_dates": "30",
+      "item_rows": "1096733",
+      "invalid_property_dates": "0",
+      "events_with_repeated_selected_keys": "0",
+      "purchase_events": "2054",
+      "purchase_events_without_revenue": "0",
+      "raw_purchase_revenue_usd": "144260.0"
+    },
+    {
+      "source_month": "202012",
+      "event_rows": "1612725",
+      "property_dates": "31",
+      "item_rows": "1849850",
+      "invalid_property_dates": "0",
+      "events_with_repeated_selected_keys": "0",
+      "purchase_events": "2434",
+      "purchase_events_without_revenue": "0",
+      "raw_purchase_revenue_usd": "160555.0"
+    },
+    {
+      "source_month": "202101",
+      "event_rows": "1210147",
+      "property_dates": "31",
+      "item_rows": "1036149",
+      "invalid_property_dates": "0",
+      "events_with_repeated_selected_keys": "0",
+      "purchase_events": "1204",
+      "purchase_events_without_revenue": "0",
+      "raw_purchase_revenue_usd": "57350.0"
+    }
+  ]
+}

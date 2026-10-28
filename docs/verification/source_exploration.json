@@ -1,0 +1,55 @@
+{
+  "dataset": "bigquery-public-data.ga4_obfuscated_sample_ecommerce",
+  "source_date_range": [
+    "2020-11-01",
+    "2021-01-31"
+  ],
+  "execution_project": "macro-virtue-457517-u9",
+  "execution_mode": "existing BigQuery sandbox; read-only queries; billing not enabled by this work",
+  "execution_location": "US",
+  "queries": [
+    {
+      "name": "source_coverage",
+      "job_id": "job__tC8AuSHo3NidCL3b6HzJR-tug5Z",
+      "result_file": "source_coverage.json",
+      "rows": 1
+    },
+    {
+      "name": "event_inventory",
+      "job_id": "job_k2NcCgopNkbAjRBUQtZdPoooPEPi",
+      "job_url": "https://console.cloud.google.com/bigquery?pli=1&project=macro-virtue-457517-u9&ws=!1m5!1m4!1m3!1smacro-virtue-457517-u9!2sjob_k2NcCgopNkbAjRBUQtZdPoooPEPi!3sUS",
+      "result_file": "event_inventory.json",
+      "rows": 17
+    },
+    {
+      "name": "parameter_inventory",
+      "job_id": "job_3-W-ma6-CamSZomjrMo7dmrePl2z",
+      "job_url": "https://console.cloud.google.com/bigquery?pli=1&project=macro-virtue-457517-u9&ws=!1m5!1m4!1m3!1smacro-virtue-457517-u9!2sjob_3-W-ma6-CamSZomjrMo7dmrePl2z!3sUS",
+      "result_file": "parameter_inventory_20210131.json",
+      "rows": 30,
+      "scope": "2021-01-31 only; top 30 event-name and parameter-key pairs"
+    }
+  ],
+  "checks": {
+    "reference_event_count_matches": true,
+    "reference_raw_user_count_matches": true,
+    "reference_date_count_matches": true,
+    "reference_event_type_count_matches": true,
+    "event_inventory_reconciles": true
+  },
+  "limits": [
+    "User identifiers describe browsers or devices, not people.",
+    "session_start event count is not a validated distinct session count.",
+    "Purchase event count is not a deduplicated order count.",
+    "Zero placeholder counts apply only to user_pseudo_id, not all source fields.",
+    "The parameter inventory covers one day and only the top 30 pairs.",
+    "The source has not yet been flattened, downloaded or modelled."
+  ],
+  "sql_file": "sql/01_source_exploration.sql",
+  "sql_sha256": "7061232178ab747623c43a3dc5d25c25ad4823bd86d7faa01930fdd01c6e3d8a",
+  "result_sha256": {
+    "source_coverage.json": "03d25b6e50a74ee4610d0b81d3f771e07d77b188abda7c64fb21dc67bba0fd00",
+    "event_inventory.json": "5bbd18821ecb8a3dbfda4a7404c35c78a892d16b92efd016dbe3d666be46affa",
+    "parameter_inventory_20210131.json": "1318facf9fb89bc8189ae6c5dea36486a287c9a933fb102a142afb21daf88197"
+  }
+}

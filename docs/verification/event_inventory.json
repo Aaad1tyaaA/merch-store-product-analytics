@@ -1,0 +1,70 @@
+[
+  {
+    "event_name": "page_view",
+    "event_count": "1350428"
+  },
+  {
+    "event_name": "user_engagement",
+    "event_count": "1058721"
+  },
+  {
+    "event_name": "scroll",
+    "event_count": "493072"
+  },
+  {
+    "event_name": "view_item",
+    "event_count": "386068"
+  },
+  {
+    "event_name": "session_start",
+    "event_count": "354970"
+  },
+  {
+    "event_name": "first_visit",
+    "event_count": "257462"
+  },
+  {
+    "event_name": "view_promotion",
+    "event_count": "190104"
+  },
+  {
+    "event_name": "add_to_cart",
+    "event_count": "58543"
+  },
+  {
+    "event_name": "begin_checkout",
+    "event_count": "38757"
+  },
+  {
+    "event_name": "select_item",
+    "event_count": "31007"
+  },
+  {
+    "event_name": "view_search_results",
+    "event_count": "26172"
+  },
+  {
+    "event_name": "add_shipping_info",
+    "event_count": "19722"
+  },
+  {
+    "event_name": "add_payment_info",
+    "event_count": "13899"
+  },
+  {
+    "event_name": "select_promotion",
+    "event_count": "9450"
+  },
+  {
+    "event_name": "purchase",
+    "event_count": "5692"
+  },
+  {
+    "event_name": "click",
+    "event_count": "1446"
+  },
+  {
+    "event_name": "view_item_list",
+    "event_count": "71"
+  }
+]
