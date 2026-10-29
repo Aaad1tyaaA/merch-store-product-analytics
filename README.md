@@ -38,14 +38,26 @@ graph LR
 
 **Reproduce**
 
+I use Python 3.13. The committed notebooks, dashboard previews and aggregate CSVs can be explored without Google credentials or the raw database. To run the app from a fresh checkout:
+
 ```powershell
-python -m venv .venv; .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r app/requirements.txt
+python -m streamlit run app/streamlit_app.py
+```
+
+To rebuild the analysis from the public source, I install the full dependencies and authenticate with my own Google Cloud project:
+
+```powershell
+python -m pip install -r requirements.txt
 gcloud auth application-default login --disable-quota-project   # only needed to download
 python scripts/run_all.py <project-id>
 ```
 
 `run_all.py` downloads missing Parquet extracts (about 1 GB), builds `ga4.duckdb`, generates the discovery evidence, executes the notebooks, exports app/dashboard data and runs the tests. It preserves existing Power BI definitions; `python scripts/build_dashboard.py --regenerate` backs them up before replacement. For Power BI, double-click **Open dashboard.cmd** or run `python scripts/setup_dashboard.py`; this creates a configured working report under ignored `dashboard/.local/` while keeping the shared template portable. `pytest` runs without BigQuery using synthetic fixtures, plus full-data checks when the database is present. Run the app with `streamlit run app/streamlit_app.py`.
+
+I run `python -m pytest -q` after installing the full dependencies. GitHub Actions uses Python 3.13 on Ubuntu and Windows; the seven database checks skip on a fresh clone, while the remaining checks use the committed aggregates and synthetic fixtures. Raw extracts, credentials, the local database and Power BI working copies stay outside Git.
 
 **Repo map**
 
