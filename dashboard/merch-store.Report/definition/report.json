@@ -1,13 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "MerchAnalytics",
-      "reportVersionAtImport": "5.56",
+      "reportVersionAtImport": {
+        "visual": "1.1.0",
+        "page": "1.1.0",
+        "report": "3.3.0"
+      },
       "type": "SharedResources"
     }
   },
-  "layoutOptimization": "None",
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -26,6 +29,7 @@
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
-    "useDefaultAggregateDisplayName": true
+    "useDefaultAggregateDisplayName": true,
+    "locale": "en-US"
   }
 }

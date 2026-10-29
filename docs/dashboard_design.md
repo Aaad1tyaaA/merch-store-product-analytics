@@ -26,10 +26,11 @@ Tableau emphasises a clear visual hierarchy, predictable interactions, context a
 
 ## Charts and visible values
 
+- I pin the report display locale to English (United States) so counts match the comma grouping in the memo and README. [Microsoft: default format string locale](https://learn.microsoft.com/en-us/power-bi/create-reports/power-bi-default-format-string-locale).
 - Bars and columns show values directly, including session counts, currency amounts and percentages. Counts and USD use whole numbers; comparison percentages use one decimal where it helps.
 - The purchase journey uses horizontal bars with a common zero baseline. Step order remains chronological; discovery comparisons are ranked by session volume.
 - I use concise page aliases on axes while retaining the original observed page titles in the exported data.
-- Dense daily trends use selective labels and a clearly dated latest-value summary. Printing 92 labels on each line would make them collide; exact observations remain available through **Show data** and the source CSV.
+- Dense daily trends use selective labels above the line on an opaque background, extra space above the cart-event peak and a clearly dated latest-value summary. Printing 92 labels on each line would make them collide; exact observations remain available through **Show data** and the source CSV.
 - Titles explain the comparison, and captions identify the unit, time window or important limitation. Labels and numbers carry meaning alongside colour.
 - Unrelated regression terms and alternative test sizes do not get a grand total. Rates from different denominators are not added together.
 

@@ -280,6 +280,8 @@ def chart_style(precision=0, dense=False):
               'color': fill(INK), 'labelDisplayUnits': lit('1D'), 'labelPrecision': lit(f'{precision}D')}
     if dense:
         labels['labelDensity'] = lit('20D')
+        labels.update(labelPosition=lit("'Above'"), enableBackground=lit('true'),
+                      backgroundColor=fill('#FFFFFF'), backgroundTransparency=lit('0D'))
     else:
         labels['labelPosition'] = lit("'OutsideEnd'")
         labels['labelDensity'] = lit('100D')
@@ -478,6 +480,8 @@ def page_four():
     draws = json.loads((ROOT / 'docs/evidence/revenue_bootstrap.json').read_text())['repetitions']
     latest = t['tracking_daily'].sort_values('event_date').iloc[-1]
     latest_day = pd.Timestamp(latest.event_date).strftime('%d %b %Y')
+    cart_style = chart_style(dense=True)
+    cart_style['valueAxis'][0]['properties']['end'] = lit('2500D')
     return p, PAGES[3][1], [
         *chrome(p, 'Trust the evidence, bound the claim', 'Tracking coverage, sampling uncertainty and sensitivity to analytical definitions'),
         note_tile(p, 'reliable-days', 232, 384, f'{days} reporting days', '26 Nov 2020 - 25 Jan 2021 funnel window'),
@@ -486,7 +490,7 @@ def page_four():
         takeaway(p, 'CONFIDENCE WITH LIMITS  /  Discovery leads under the +1-point model. Its sampling interval does not establish causal revenue impact.'),
         visual(p, 'cart-tracking', 'lineChart', (232, 330, 584, 300),
             {'Category': [c('tracking_daily', 'event_date')], 'Y': [m('Daily cart events')]},
-            heading='01  Daily add-to-cart tracking', objects=chart_style(dense=True), sort=field('tracking_daily', 'event_date')),
+            heading='01  Daily add-to-cart tracking', objects=cart_style, sort=field('tracking_daily', 'event_date')),
         visual(p, 'id-coverage', 'lineChart', (832, 330, 584, 300),
             {'Category': [c('tracking_daily', 'event_date')], 'Y': [m('Valid order ID coverage')]},
             heading='02  Purchase events with valid order IDs', objects=chart_style(dense=True), sort=field('tracking_daily', 'event_date')),
@@ -526,13 +530,14 @@ def build_report(tables):
     write_json(REPORT / 'definition/version.json', {
         '$schema': f'{SCHEMA}/item/report/definition/versionMetadata/1.0.0/schema.json', 'version': '2.0.0'})
     write_json(REPORT / 'definition/report.json', {
-        '$schema': f'{SCHEMA}/item/report/definition/report/1.1.0/schema.json',
-        'themeCollection': {'baseTheme': {'name': theme, 'reportVersionAtImport': '5.56', 'type': 'SharedResources'}},
-        'layoutOptimization': 'None',
+        '$schema': f'{SCHEMA}/item/report/definition/report/3.3.0/schema.json',
+        'themeCollection': {'baseTheme': {'name': theme, 'reportVersionAtImport': {
+            'visual': '1.1.0', 'page': '1.1.0', 'report': '3.3.0'}, 'type': 'SharedResources'}},
         'resourcePackages': [{'name': 'SharedResources', 'type': 'SharedResources',
                               'items': [{'name': theme, 'path': f'BaseThemes/{theme}.json', 'type': 'BaseTheme'}]}],
         'settings': {'useStylableVisualContainerHeader': True, 'defaultDrillFilterOtherVisuals': True,
-                     'allowChangeFilterTypes': True, 'useEnhancedTooltips': True, 'useDefaultAggregateDisplayName': True}})
+                     'allowChangeFilterTypes': True, 'useEnhancedTooltips': True,
+                     'useDefaultAggregateDisplayName': True, 'locale': 'en-US'}})
     pages = [page_one(tables['kpis'].iloc[0]), page_two(), page_three(), page_four()]
     write_json(REPORT / 'definition/pages/pages.json', {
         '$schema': f'{SCHEMA}/item/report/definition/pagesMetadata/1.0.0/schema.json',

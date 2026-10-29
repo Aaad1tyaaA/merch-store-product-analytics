@@ -210,6 +210,8 @@ def test_new_pages_reconcile_to_published_evidence():
 
 
 def test_readable_type_scale_chart_values_and_tab_order():
+    report = json.loads((REPORT / 'definition/report.json').read_text())
+    assert report['settings']['locale'] == 'en-US'
     chart_types = {'clusteredBarChart', 'clusteredColumnChart', 'lineChart'}
     for page in (REPORT / 'definition/pages').glob('*/page.json'):
         assert json.loads(page.read_text())['displayOption'] == 'FitToWidth'
@@ -226,6 +228,8 @@ def test_readable_type_scale_chart_values_and_tab_order():
                 assert obj['visualContainerObjects']['general'][0]['properties']['altText']
                 if obj['visualType'] == 'lineChart':
                     assert labels['labelDensity']['expr']['Literal']['Value'] == '20D'
+                    assert labels['labelPosition']['expr']['Literal']['Value'] == "'Above'"
+                    assert labels['enableBackground']['expr']['Literal']['Value'] == 'true'
                 else:
                     assert labels['labelDensity']['expr']['Literal']['Value'] == '100D'
                     assert obj['objects']['categoryAxis'][0]['properties']['maxMarginFactor']['expr']['Literal']['Value'] == '45D'
