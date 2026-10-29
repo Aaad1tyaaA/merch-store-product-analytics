@@ -1,0 +1,74 @@
+table definition_sensitivity
+	lineageTag: 47b09d05-cf7c-8ec8-add7-9acaeb7eecb3
+
+	measure 'Sensitivity conversion' = AVERAGE(definition_sensitivity[session_conversion])
+		formatString: 0.00%
+		lineageTag: ed3fab92-576b-2a0b-c580-f43176e173ad
+
+	measure 'Sensitivity view rate' = AVERAGE(definition_sensitivity[product_view_rate])
+		formatString: 0.0%
+		lineageTag: f2f13ae6-3f4b-0e57-edf6-1f8eeda8f6a2
+
+	measure 'Sensitivity orders' = SUM(definition_sensitivity[orders])
+		formatString: #,0
+		lineageTag: a277f5b7-4736-ef2b-1dce-a2c94396ba07
+
+	column definition
+		dataType: string
+		lineageTag: f9376172-4511-c075-0935-a0f96e0ad068
+		summarizeBy: none
+		sourceColumn: definition
+
+		annotation SummarizationSetBy = User
+
+	column sessions
+		dataType: double
+		lineageTag: ffc09ff2-f23e-d05f-dd80-cc2aebba7239
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = User
+
+	column orders
+		dataType: double
+		lineageTag: 3f009437-5f5b-6a4e-f55f-53412a2a007b
+		summarizeBy: none
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = User
+
+	column revenue_usd
+		dataType: double
+		lineageTag: 2f4344c6-afa8-d964-12d1-164b82d440a8
+		summarizeBy: none
+		sourceColumn: revenue_usd
+
+		annotation SummarizationSetBy = User
+
+	column session_conversion
+		dataType: double
+		lineageTag: 33499a56-3f90-9d9a-a7e3-a40e46929b59
+		summarizeBy: none
+		sourceColumn: session_conversion
+
+		annotation SummarizationSetBy = User
+
+	column product_view_rate
+		dataType: double
+		lineageTag: 69d3fc1e-5c7e-edf7-8bde-583175f97280
+		summarizeBy: none
+		sourceColumn: product_view_rate
+
+		annotation SummarizationSetBy = User
+
+	partition definition_sensitivity = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\definition_sensitivity.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"definition", type text}, {"sessions", type number}, {"orders", type number}, {"revenue_usd", type number}, {"session_conversion", type number}, {"product_view_rate", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

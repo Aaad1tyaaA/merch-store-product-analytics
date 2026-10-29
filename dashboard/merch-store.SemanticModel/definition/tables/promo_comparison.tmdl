@@ -12,7 +12,7 @@ table promo_comparison
 		sourceColumn: basis
 		sortByColumn: basis_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column basis_order
 		dataType: int64
@@ -20,7 +20,7 @@ table promo_comparison
 		summarizeBy: none
 		sourceColumn: basis_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column group
 		dataType: string
@@ -28,7 +28,7 @@ table promo_comparison
 		summarizeBy: none
 		sourceColumn: group
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column conversion
 		dataType: double
@@ -36,7 +36,7 @@ table promo_comparison
 		summarizeBy: none
 		sourceColumn: conversion
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition promo_comparison = m
 		mode: import

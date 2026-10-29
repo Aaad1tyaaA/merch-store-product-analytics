@@ -27,7 +27,7 @@ table kpis
 		summarizeBy: none
 		sourceColumn: sessions
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column orders
 		dataType: double
@@ -35,7 +35,7 @@ table kpis
 		summarizeBy: none
 		sourceColumn: orders
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column revenue_usd
 		dataType: double
@@ -43,7 +43,7 @@ table kpis
 		summarizeBy: none
 		sourceColumn: revenue_usd
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column session_conversion
 		dataType: double
@@ -51,7 +51,7 @@ table kpis
 		summarizeBy: none
 		sourceColumn: session_conversion
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column aov
 		dataType: double
@@ -59,7 +59,7 @@ table kpis
 		summarizeBy: none
 		sourceColumn: aov
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column revenue_per_session
 		dataType: double
@@ -67,23 +67,29 @@ table kpis
 		summarizeBy: none
 		sourceColumn: revenue_per_session
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column first_date
 		dataType: dateTime
+		formatString: Long Date
 		lineageTag: 1569b6ec-e088-05f3-229f-573096794061
 		summarizeBy: none
 		sourceColumn: first_date
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column last_date
 		dataType: dateTime
+		formatString: Long Date
 		lineageTag: b0b246db-5517-acc8-606b-bc6563153fc9
 		summarizeBy: none
 		sourceColumn: last_date
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	partition kpis = m
 		mode: import

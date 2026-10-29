@@ -13,7 +13,7 @@ def main():
     parser.add_argument('project_id', help='Google Cloud project used to run the BigQuery extraction')
     args = parser.parse_args()
     for command in [('scripts/download_bq.py', args.project_id), ('scripts/setup_db.py',),
-                    ('scripts/run_notebooks.py',), ('scripts/export_app_data.py',),
+                    ('scripts/evidence.py',), ('scripts/run_notebooks.py',), ('scripts/export_app_data.py',),
                     ('scripts/build_dashboard.py',), ('-m', 'pytest', '-q', 'tests')]:
         subprocess.run([sys.executable, *command], cwd=ROOT, check=True)
 

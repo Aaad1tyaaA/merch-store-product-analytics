@@ -8,9 +8,9 @@ import mistune
 
 ROOT = Path(__file__).resolve().parents[1]
 CSS = """@page { size: A4; margin: 9mm 12mm; }
-body { font: 8.3pt/1.3 'Segoe UI', Arial, sans-serif; color: #0b0b0b; }
+body { font: 8.3pt/1.25 'Segoe UI', Arial, sans-serif; color: #0b0b0b; }
 h1 { font-size: 15pt; margin: 0 0 4pt; } h2 { font-size: 10.5pt; margin: 9pt 0 3pt; color: #2a78d6; }
-p, ul { margin: 0 0 5pt; } li { margin: 0 0 1pt; } table { border-collapse: collapse; width: 100%; margin: 3pt 0 4pt; }
+p, ul { margin: 0 0 4pt; } li { margin: 0 0 1pt; } table { border-collapse: collapse; width: 100%; margin: 3pt 0 4pt; }
 th, td { border-bottom: 1px solid #ddd; padding: 2.5pt 4pt; text-align: left; vertical-align: top; } th { background: #f3f3f1; }
 code { font-size: 8pt; }"""
 BROWSERS = [r'C:\Program Files\Google\Chrome\Application\chrome.exe',

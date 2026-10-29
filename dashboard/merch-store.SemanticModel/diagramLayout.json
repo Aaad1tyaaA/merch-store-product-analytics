@@ -1,0 +1,204 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 14
+          },
+          "nodeIndex": "activation_odds",
+          "nodeLineageTag": "b671b980-06eb-781f-7a69-c2a87892f963",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 0
+          },
+          "nodeIndex": "channel_quality",
+          "nodeLineageTag": "1c6991b3-f311-67bb-4372-a067ba158271",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 2
+          },
+          "nodeIndex": "definition_sensitivity",
+          "nodeLineageTag": "47b09d05-cf7c-8ec8-add7-9acaeb7eecb3",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 50
+          },
+          "nodeIndex": "discovery_exits",
+          "nodeLineageTag": "b5df61bd-2bae-4b5f-8822-e48ca2b98d99",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 2
+          },
+          "nodeIndex": "discovery_landing",
+          "nodeLineageTag": "757e3acc-ad84-9991-0475-2564f77cef3e",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 14
+          },
+          "nodeIndex": "funnel_by_segment",
+          "nodeLineageTag": "f9fabcf7-c0c3-688d-1683-b39af2818325",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 26
+          },
+          "nodeIndex": "funnel_overall",
+          "nodeLineageTag": "ce5ac924-677c-23a3-db02-16aa073258a8",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 0
+          },
+          "nodeIndex": "kpis",
+          "nodeLineageTag": "ffb6dc6d-b8e4-e545-99b0-f1ff937bdf85",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 26
+          },
+          "nodeIndex": "power_table",
+          "nodeLineageTag": "94aa7900-c16c-4c94-3b54-ba916c70a6ec",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 50
+          },
+          "nodeIndex": "promo_comparison",
+          "nodeLineageTag": "cf07523a-b536-c38f-2ea2-86ee083f2264",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2840,
+            "y": 38
+          },
+          "nodeIndex": "retention_cohorts",
+          "nodeLineageTag": "bbc2a1d0-bf4d-7e75-25d9-3ad0626d438d",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3124,
+            "y": 0
+          },
+          "nodeIndex": "revenue_at_stake",
+          "nodeLineageTag": "92c49de8-6f18-4eb5-e620-00a4be2ebf40",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3408,
+            "y": 14
+          },
+          "nodeIndex": "revenue_bootstrap",
+          "nodeLineageTag": "4aa079f8-9216-938c-6f21-4ad0dc083dfc",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3692,
+            "y": 26
+          },
+          "nodeIndex": "tracking_daily",
+          "nodeLineageTag": "ca888c6f-3923-0676-8b9a-83f2cce2ff31",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

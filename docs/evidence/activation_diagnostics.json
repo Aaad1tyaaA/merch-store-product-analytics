@@ -1,0 +1,7 @@
+{
+  "model_auc": 0.869208999688894,
+  "cart_rule_auc": 0.6546107810864328,
+  "brier_score": 0.006095647614135957,
+  "top_decile_precision": 0.03991040521278762,
+  "top_decile_recall": 0.6282051282051282
+}

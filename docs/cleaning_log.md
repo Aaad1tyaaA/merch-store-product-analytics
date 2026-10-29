@@ -74,7 +74,7 @@ Every bar of the funnel still shrinks (checked in `tests/`), so presence counts 
 | Rule | Users | Decision |
 |---|---:|---|
 | First observed session has `ga_session_number` > 1 | 9,288 | Not new users: excluded from activation, 30-day purchase and cohorts |
-| New users first seen after 1 January 2021 | 88,191 | Excluded from 30-day rates (incomplete window) |
+| Activation eligibility | First seen 26 Nov–26 Dec 2020 | New users only; exclude first-session buyers in the predictive analysis. Later arrivals lack a full reliable 30-day follow-up; earlier arrivals lack reliable cart tracking |
 | More than one first-touch channel across events | 39,900 | User channel = most frequent value (`mode`), ties alphabetical. Obfuscation changes `traffic_source` within a user |
 | More than one device category | 4,182 | User device = most frequent value |
 | More than one country | 0 | |

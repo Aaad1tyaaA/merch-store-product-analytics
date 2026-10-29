@@ -19,7 +19,7 @@ table activation_odds
 		summarizeBy: none
 		sourceColumn: term
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column odds_ratio
 		dataType: double
@@ -27,7 +27,7 @@ table activation_odds
 		summarizeBy: none
 		sourceColumn: odds_ratio
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column ci_low
 		dataType: double
@@ -35,7 +35,7 @@ table activation_odds
 		summarizeBy: none
 		sourceColumn: ci_low
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column ci_high
 		dataType: double
@@ -43,7 +43,7 @@ table activation_odds
 		summarizeBy: none
 		sourceColumn: ci_high
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column p_value
 		dataType: double
@@ -51,7 +51,7 @@ table activation_odds
 		summarizeBy: none
 		sourceColumn: p_value
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition activation_odds = m
 		mode: import

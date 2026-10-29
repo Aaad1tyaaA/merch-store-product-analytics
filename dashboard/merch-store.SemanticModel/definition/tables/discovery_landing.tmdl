@@ -1,0 +1,74 @@
+table discovery_landing
+	lineageTag: 757e3acc-ad84-9991-0475-2564f77cef3e
+
+	measure 'Landing sessions' = SUM(discovery_landing[sessions])
+		formatString: #,0
+		lineageTag: 85be36c0-592b-c2d4-64e9-eee2d9c88f86
+
+	measure 'Landing view rate' = AVERAGE(discovery_landing[product_view_rate])
+		formatString: 0.0%
+		lineageTag: 1770fc23-9d37-c247-be89-f1c57589a3de
+
+	measure 'Landing order rate' = AVERAGE(discovery_landing[order_session_rate])
+		formatString: 0.00%
+		lineageTag: 74da7f74-1eb3-7d6d-57bc-535cd9ff4137
+
+	column landing_page
+		dataType: string
+		lineageTag: 05563c21-e2ee-ac54-4605-3ca6df99c727
+		summarizeBy: none
+		sourceColumn: landing_page
+
+		annotation SummarizationSetBy = User
+
+	column sessions
+		dataType: int64
+		lineageTag: 2acd0c80-8e58-bd69-5267-98a57320398a
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = User
+
+	column product_view_rate
+		dataType: double
+		lineageTag: c81698be-2294-9d3c-957c-cf8e73cb9441
+		summarizeBy: none
+		sourceColumn: product_view_rate
+
+		annotation SummarizationSetBy = User
+
+	column order_session_rate
+		dataType: double
+		lineageTag: d3d2f25e-8750-8db6-aff0-f0684c8d05ee
+		summarizeBy: none
+		sourceColumn: order_session_rate
+
+		annotation SummarizationSetBy = User
+
+	column share_of_sessions
+		dataType: double
+		lineageTag: aaaa11f7-930c-4164-3e43-5497d8d4c511
+		summarizeBy: none
+		sourceColumn: share_of_sessions
+
+		annotation SummarizationSetBy = User
+
+	column page_label
+		dataType: string
+		lineageTag: c57840fd-fa56-dd27-e0bb-7adfd96dce07
+		summarizeBy: none
+		sourceColumn: page_label
+
+		annotation SummarizationSetBy = User
+
+	partition discovery_landing = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\discovery_landing.csv"), [Delimiter = ",", Columns = 6, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"landing_page", type text}, {"sessions", Int64.Type}, {"product_view_rate", type number}, {"order_session_rate", type number}, {"share_of_sessions", type number}, {"page_label", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

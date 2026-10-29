@@ -6,6 +6,8 @@
 *.pbix
 *.abf
 **/.pbi/
+/dashboard/.local/
+/tmp/
 .venv/
 __pycache__/
 .pytest_cache/

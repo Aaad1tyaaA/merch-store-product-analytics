@@ -1,6 +1,7 @@
 """Smoke tests for the Streamlit app and its statistics, using only app/data."""
 from pathlib import Path
 import sys
+import pytest
 
 from streamlit.testing.v1 import AppTest
 
@@ -27,3 +28,24 @@ def test_app_runs_and_planner_responds():
     assert not at.exception
     at.number_input[3].set_value(9_000).run()
     assert at.error and 'SRM detected' in at.error[0].value
+
+
+def test_high_baseline_skips_impossible_comparison_grid_rows():
+    at = AppTest.from_file(str(APP / 'streamlit_app.py'), default_timeout=60).run()
+    at.number_input[0].set_value(90.0).run()
+    assert not at.exception
+    at.number_input[1].set_value(20.0).run()
+    assert not at.exception
+    assert any('Rates must be between' in e.value for e in at.error)
+
+
+@pytest.mark.parametrize('args', [(.1, 0), (.1, -.1), (.1, .1, 0), (.1, .1, .05, 1), (float('nan'), .1)])
+def test_sample_size_rejects_invalid_inputs(args):
+    with pytest.raises(ValueError):
+        n_per_arm(*args)
+
+
+@pytest.mark.parametrize('counts,shares', [([0, 0], None), ([1, -1], None), ([1, 2], [.5]), ([1, 2], [0, 1])])
+def test_srm_rejects_invalid_counts_and_allocations(counts, shares):
+    with pytest.raises(ValueError):
+        srm_check(counts, shares)

@@ -7,11 +7,14 @@ table retention_cohorts
 
 	column cohort_week
 		dataType: dateTime
+		formatString: dd MMM yyyy
 		lineageTag: 7388678d-712e-6fe6-5484-70e26c1c93b8
 		summarizeBy: none
 		sourceColumn: cohort_week
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column cohort_users
 		dataType: int64
@@ -19,7 +22,7 @@ table retention_cohorts
 		summarizeBy: none
 		sourceColumn: cohort_users
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column week_number
 		dataType: int64
@@ -27,7 +30,7 @@ table retention_cohorts
 		summarizeBy: none
 		sourceColumn: week_number
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column active_users
 		dataType: int64
@@ -35,7 +38,7 @@ table retention_cohorts
 		summarizeBy: none
 		sourceColumn: active_users
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column retention
 		dataType: double
@@ -43,7 +46,7 @@ table retention_cohorts
 		summarizeBy: none
 		sourceColumn: retention
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition retention_cohorts = m
 		mode: import

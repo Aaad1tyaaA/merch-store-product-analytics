@@ -10,7 +10,7 @@ from scipy.stats import rankdata
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'app'))
-from stats import n_per_arm, proportion_ci, weeks_needed  # noqa: E402
+from stats import n_per_arm, weeks_needed  # noqa: E402
 
 HOLIDAYS = {'Black Friday': '2020-11-27', 'Cyber Monday': '2020-11-30', 'Christmas': '2020-12-25'}
 TRAIN_END = '2020-12-10'  # activation cohort: train on first seen 26 Nov-10 Dec, test on 11-26 Dec
@@ -22,27 +22,42 @@ def connect(path=ROOT / 'ga4.duckdb'):
     return con
 
 
+def clustered_ratio(successes, entering, clusters):
+    """Ratio and delta-method SE with independent user clusters (G/(G-1) correction)."""
+    d = pd.DataFrame({'y': successes, 'n': entering, 'cluster': clusters})
+    grouped = d.groupby('cluster')[['y', 'n']].sum()
+    total = grouped.n.sum()
+    if total <= 0 or len(grouped) < 2:
+        raise ValueError('A ratio needs a positive denominator and at least two user clusters')
+    rate = grouped.y.sum() / total
+    residual = grouped.y - rate * grouped.n
+    se = np.sqrt(len(grouped) / (len(grouped) - 1) * (residual ** 2).sum()) / total
+    return float(rate), float(se)
+
+
 def market_comparison(con, a='India', b='United States'):
-    """Step conversion with 95% margins of error for two markets."""
-    f = con.sql(f"""SELECT segment, step_order, step, sessions,
-                           lag(sessions) OVER (PARTITION BY segment ORDER BY step_order) AS entering
-                    FROM funnel_by_segment
-                    WHERE dimension = 'Market' AND segment IN ('{a}', '{b}')""").df()
-    first = f[f.step_order == 1].set_index('segment').sessions
-    overall = f[f.step_order == 6].assign(entering=lambda x: x.segment.map(first), step='Session conversion')
+    """User-clustered step ratios; verdict uses the interval for the difference."""
+    d = con.execute("SELECT * FROM fact_sessions WHERE in_funnel_window AND market IN (?, ?)", [a, b]).df()
+    flags = [None, 'has_view_item', 'has_add_to_cart', 'has_begin_checkout', 'has_add_payment_info', 'has_order']
+    names = ['Session', 'View item', 'Add to cart', 'Begin checkout', 'Add payment info', 'Order']
     rows = []
-    for _, r in pd.concat([f[f.step_order > 1], overall]).iterrows():
-        p, moe = proportion_ci(r.sessions, r.entering)
-        rows.append({'step': r.step, 'step_order': r.step_order if r.step != 'Session conversion' else 7,
-                     'market': r.segment, 'entering': int(r.entering), 'reached': int(r.sessions),
-                     'rate': p, 'moe': moe})
-    t = pd.DataFrame(rows).pivot(index=['step_order', 'step'], columns='market', values=['rate', 'moe', 'entering'])
-    t.columns = [f'{m}_{v}' for v, m in t.columns]
-    t = t.reset_index()
-    overlap = ((t[f'{a}_rate'] - t[f'{a}_moe']) <= (t[f'{b}_rate'] + t[f'{b}_moe'])) & \
-              ((t[f'{b}_rate'] - t[f'{b}_moe']) <= (t[f'{a}_rate'] + t[f'{a}_moe']))
-    t['verdict'] = np.where(overlap, 'No clear difference', np.where(t[f'{a}_rate'] > t[f'{b}_rate'], f'{a} higher', f'{b} higher'))
-    return t
+    for k in range(1, 7):
+        row = {'step_order': k + 1, 'step': names[k] if k < 6 else 'Session conversion'}
+        errors = []
+        for market in [a, b]:
+            part = d[d.market == market]
+            numerator = part[flags[k if k < 6 else 5]].astype(int)
+            denominator = part[flags[k - 1]].astype(int) if 1 < k < 6 else np.ones(len(part))
+            rate, se = clustered_ratio(numerator.to_numpy(), np.asarray(denominator), part.user_pseudo_id.to_numpy())
+            row.update({f'{market}_rate': rate, f'{market}_moe': 1.96 * se,
+                        f'{market}_entering': int(np.sum(denominator))})
+            errors.append(se)
+        gap = row[f'{a}_rate'] - row[f'{b}_rate']
+        moe = 1.96 * np.hypot(*errors)
+        row.update(gap=gap, gap_ci_low=gap-moe, gap_ci_high=gap+moe,
+                   verdict='No clear difference' if abs(gap) <= moe else (f'{a} higher' if gap > 0 else f'{b} higher'))
+        rows.append(row)
+    return pd.DataFrame(rows)
 
 
 def activation_frame(con):
@@ -75,7 +90,7 @@ def _label(term):
 
 
 def fit_activation(d):
-    """Logistic regression on the training cohort; odds ratios and out-of-time validation."""
+    """Fit once; return odds ratios, out-of-time validation and the fitted model."""
     model = smf.logit(FORMULA, d[d.train]).fit(disp=0)
     ci = np.exp(model.conf_int())
     odds = pd.DataFrame({'term': [_label(t) for t in model.params.index], 'odds_ratio': np.exp(model.params).values,
@@ -92,7 +107,7 @@ def fit_activation(d):
                   'top_decile_rate': test[top].y.mean(), 'test_rate': test.y.mean(),
                   'top_decile_lift': test[top].y.mean() / test.y.mean(),
                   'top_decile_share_of_buyers': test[top].y.sum() / pos.sum()}
-    return odds, validation
+    return odds, validation, model
 
 
 def experiment_target(con):

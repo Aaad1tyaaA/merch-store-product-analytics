@@ -7,7 +7,11 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["DataFolder", "kpis", "funnel_overall", "funnel_by_segment", "revenue_at_stake", "activation_odds", "retention_cohorts", "channel_quality", "promo_comparison", "power_table"]
+annotation PBI_QueryOrder = ["DataFolder", "kpis", "funnel_overall", "funnel_by_segment", "revenue_at_stake", "activation_odds", "retention_cohorts", "channel_quality", "promo_comparison", "power_table", "discovery_landing", "discovery_exits", "tracking_daily", "revenue_bootstrap", "definition_sensitivity"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table kpis
 ref table funnel_overall
@@ -18,3 +22,10 @@ ref table retention_cohorts
 ref table channel_quality
 ref table promo_comparison
 ref table power_table
+ref table discovery_landing
+ref table discovery_exits
+ref table tracking_daily
+ref table revenue_bootstrap
+ref table definition_sensitivity
+
+ref cultureInfo en-US

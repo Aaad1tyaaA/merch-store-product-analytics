@@ -11,7 +11,7 @@ table funnel_overall
 		summarizeBy: none
 		sourceColumn: step_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column step
 		dataType: string
@@ -20,7 +20,7 @@ table funnel_overall
 		sourceColumn: step
 		sortByColumn: step_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column sessions
 		dataType: int64
@@ -28,7 +28,7 @@ table funnel_overall
 		summarizeBy: none
 		sourceColumn: sessions
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column share_of_sessions
 		dataType: double
@@ -36,7 +36,7 @@ table funnel_overall
 		summarizeBy: none
 		sourceColumn: share_of_sessions
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column step_conversion
 		dataType: double
@@ -44,7 +44,7 @@ table funnel_overall
 		summarizeBy: none
 		sourceColumn: step_conversion
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column sessions_lost
 		dataType: double
@@ -52,7 +52,7 @@ table funnel_overall
 		summarizeBy: none
 		sourceColumn: sessions_lost
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition funnel_overall = m
 		mode: import

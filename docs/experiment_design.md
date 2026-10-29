@@ -8,6 +8,10 @@ Session → product view is the funnel step with the most revenue at stake. Only
 
 Within this step, new sessions are the weakest large segment: 18.5% view a product, against 25.3% of returning sessions, and new sessions are 74.6% of all sessions. Mobile checkout, the usual suspect, converts as well as desktop in this data, so it is not the first test.
 
+## Instrumentation gate
+
+I first validate `page_view` and `view_item` on the actual homepage, category and product pages. The sample contains product-titled landing pages without product-view events, so I cannot interpret all missing views as navigation failure. I launch the discovery test only after both arms pass event-coverage checks. Landing/exit evidence and the conditional revenue scenario are in `docs/evidence_review.md`; that observational scenario does not establish a causal revenue forecast.
+
 ## Hypothesis
 
 If new visitors see a grid of best-selling products in the first screen of the page they land on, more of them will view a product in their first session, because 80% of sessions currently end without reaching a product page.

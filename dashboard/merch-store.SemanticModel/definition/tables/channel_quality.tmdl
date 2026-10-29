@@ -15,7 +15,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: channel
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column users
 		dataType: int64
@@ -23,7 +23,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: users
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column buyers_56d
 		dataType: int64
@@ -31,7 +31,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: buyers_56d
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column revenue_56d
 		dataType: double
@@ -39,7 +39,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: revenue_56d
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column share_of_users
 		dataType: double
@@ -47,7 +47,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: share_of_users
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column share_of_revenue
 		dataType: double
@@ -55,7 +55,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: share_of_revenue
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column buyer_rate_56d
 		dataType: double
@@ -63,7 +63,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: buyer_rate_56d
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column revenue_per_user_56d
 		dataType: double
@@ -71,7 +71,7 @@ table channel_quality
 		summarizeBy: none
 		sourceColumn: revenue_per_user_56d
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition channel_quality = m
 		mode: import

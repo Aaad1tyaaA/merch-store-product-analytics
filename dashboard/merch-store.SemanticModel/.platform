@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "merch-store"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "800de5c5-1345-44d7-a063-b149f00c8831"
+  }
+}

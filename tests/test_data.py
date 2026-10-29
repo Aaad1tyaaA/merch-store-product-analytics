@@ -58,3 +58,17 @@ def test_funnels_never_grow(con):
 def test_funnel_ends_at_session_conversion(con):
     orders_step = one(con, 'SELECT sessions FROM funnel_overall WHERE step_order = 6')
     assert orders_step == one(con, 'SELECT COUNT(*) FROM fact_sessions WHERE in_funnel_window AND has_order')
+
+
+def test_model_contract_and_session_attributes(con):
+    assert one(con, '''SELECT count(*) FROM fact_transactions t
+        ANTI JOIN fact_sessions s USING (session_key)''') == 0
+    assert one(con, '''SELECT count(*) FROM fact_sessions s
+        ANTI JOIN dim_users u USING (user_pseudo_id)''') == 0
+    assert one(con, '''SELECT count(*) FROM fact_events WHERE session_key IS NULL
+        OR user_pseudo_id IS NULL OR ga_session_id IS NULL''') == 0
+    assert one(con, '''SELECT count(*) FROM fact_sessions WHERE revenue_usd < 0
+        OR orders < 0 OR channel NOT IN ('Organic Search', 'Paid Search', 'Direct', 'Referral', 'Unknown')''') == 0
+    assert one(con, '''SELECT count(*) FROM (SELECT session_key FROM fact_events
+        GROUP BY 1 HAVING count(DISTINCT device_category) > 1 OR count(DISTINCT country) > 1
+        OR count(DISTINCT channel) > 1)''') == 0

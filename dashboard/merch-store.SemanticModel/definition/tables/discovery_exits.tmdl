@@ -1,0 +1,50 @@
+table discovery_exits
+	lineageTag: b5df61bd-2bae-4b5f-8822-e48ca2b98d99
+
+	measure 'Exit sessions' = SUM(discovery_exits[sessions])
+		formatString: #,0
+		lineageTag: d783e9d7-25d2-a9e9-7269-3b89ba25fc25
+
+	column exit_page
+		dataType: string
+		lineageTag: 5959c109-4cca-e3af-64d4-195ba88e9de1
+		summarizeBy: none
+		sourceColumn: exit_page
+
+		annotation SummarizationSetBy = User
+
+	column sessions
+		dataType: int64
+		lineageTag: db8f48ef-74e0-df89-665b-93e72b97e164
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = User
+
+	column share_of_nonview_sessions
+		dataType: double
+		lineageTag: 3119c0a8-a5e5-4383-4ad2-fa198830a200
+		summarizeBy: none
+		sourceColumn: share_of_nonview_sessions
+
+		annotation SummarizationSetBy = User
+
+	column page_label
+		dataType: string
+		lineageTag: d7de8a7d-b831-2bbf-db51-cc7efdf69ae0
+		summarizeBy: none
+		sourceColumn: page_label
+
+		annotation SummarizationSetBy = User
+
+	partition discovery_exits = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\discovery_exits.csv"), [Delimiter = ",", Columns = 4, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"exit_page", type text}, {"sessions", Int64.Type}, {"share_of_nonview_sessions", type number}, {"page_label", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

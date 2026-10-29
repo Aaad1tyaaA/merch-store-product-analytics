@@ -1,0 +1,9 @@
+{
+  "repetitions": 1000,
+  "seed": 42,
+  "users": 193296,
+  "view_minus_cart_ci_low": 1401.4494317588824,
+  "view_minus_cart_ci_high": 1648.9991970214694,
+  "bootstrap_share_view_exceeds_cart": 1.0,
+  "scope": "Sampling uncertainty conditional on the +1-point scenario; not causal uncertainty."
+}

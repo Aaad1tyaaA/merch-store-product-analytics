@@ -7,6 +7,28 @@ TABLES = ['funnel_overall', 'funnel_by_segment', 'revenue_at_stake', 'weekly_nor
           'retention_cohorts', 'channel_quality', 'promo_effect', 'category_funnel']
 
 
+def export_dashboard_evidence():
+    """Publish the existing robustness outputs at their original aggregate grains."""
+    source = ROOT / 'docs/evidence'
+    landing = pd.read_csv(source / 'landing_pages.csv').nlargest(8, 'sessions').copy()
+    exits = pd.read_csv(source / 'nonviewer_exit_pages.csv').nlargest(8, 'sessions').copy()
+    def label(value):
+        return (value.replace(' | Google Merchandise Store', '').replace(' | Shop by Brand', '')
+                .replace('[No page_view]', 'No page-view event').replace("Men's T-Shirts | Apparel", "Men's T-shirts")
+                .replace('Google Dino Game Tee', 'Dino Game Tee').replace('Google Online Store', 'Storefront')
+                .replace('Drinkware | Lifestyle', 'Drinkware'))
+    landing['page_label'] = landing.landing_page.map(label)
+    exits['page_label'] = exits.exit_page.map(label)
+    bootstrap = pd.read_csv(source / 'revenue_bootstrap.csv').merge(
+        pd.read_csv(ROOT / 'dashboard/data/revenue_at_stake.csv')[['step', 'step_order']], on='step', validate='one_to_one')
+    tables = {'discovery_landing': landing, 'discovery_exits': exits,
+              'tracking_daily': pd.read_csv(source / 'tracking_daily.csv'),
+              'revenue_bootstrap': bootstrap,
+              'definition_sensitivity': pd.read_csv(source / 'definition_sensitivity.csv')}
+    for name, frame in tables.items():
+        frame.to_csv(ROOT / 'dashboard/data' / f'{name}.csv', index=False, lineterminator='\n')
+
+
 def main():
     con = connect()
     out = {t: con.sql(f'SELECT * FROM {t}').df() for t in TABLES}
@@ -20,7 +42,7 @@ def main():
         {'basis': basis, 'basis_order': i, 'group': group, 'conversion': promo[f'{key}_{basis.lower()}_conversion']}
         for i, basis in enumerate(['Raw', 'Adjusted']) for group, key in [('Clicked a promotion', 'promo'), ('Did not', 'other')]])
     out['market_comparison'] = market_comparison(con)
-    odds, validation = fit_activation(activation_frame(con))
+    odds, validation, _ = fit_activation(activation_frame(con))
     out['activation_odds'] = odds
     out['activation_validation'] = pd.DataFrame([validation])
     pop = experiment_population(con)
@@ -34,6 +56,7 @@ def main():
         for name, frame in out.items():
             frame.to_csv(ROOT / folder / f'{name}.csv', index=False, lineterminator='\n')
     print(f'Exported {len(out)} tables to app/data and dashboard/data.')
+    export_dashboard_evidence()
 
 
 if __name__ == '__main__':

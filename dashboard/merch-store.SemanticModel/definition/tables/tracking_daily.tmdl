@@ -1,0 +1,65 @@
+table tracking_daily
+	lineageTag: ca888c6f-3923-0676-8b9a-83f2cce2ff31
+
+	measure 'Daily cart events' = SUM(tracking_daily[add_to_cart])
+		formatString: #,0
+		lineageTag: 541ef4f1-7f83-9ebe-f415-bf4454fbe6af
+
+	measure 'Valid order ID coverage' = AVERAGE(tracking_daily[valid_purchase_share])
+		formatString: 0%
+		lineageTag: 2c873dd4-c6e1-8cec-73d0-9cc6eb1a5ce1
+
+	column event_date
+		dataType: dateTime
+		formatString: dd MMM
+		lineageTag: 4ea96ec2-f032-dc0a-6b19-e958ebae4d74
+		summarizeBy: none
+		sourceColumn: event_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column add_to_cart
+		dataType: int64
+		lineageTag: caeefdbb-b36a-2139-c649-e98fbee99176
+		summarizeBy: none
+		sourceColumn: add_to_cart
+
+		annotation SummarizationSetBy = User
+
+	column valid_purchase_events
+		dataType: int64
+		lineageTag: 2ea37555-a12f-8463-f0f5-d8c3b31dfa84
+		summarizeBy: none
+		sourceColumn: valid_purchase_events
+
+		annotation SummarizationSetBy = User
+
+	column purchase_events
+		dataType: int64
+		lineageTag: 6714360d-7226-3a6f-bf0d-5aa3402dd37e
+		summarizeBy: none
+		sourceColumn: purchase_events
+
+		annotation SummarizationSetBy = User
+
+	column valid_purchase_share
+		dataType: double
+		lineageTag: 2a4e2ea8-5e6e-28f6-8845-5ccf832316a9
+		summarizeBy: none
+		sourceColumn: valid_purchase_share
+
+		annotation SummarizationSetBy = User
+
+	partition tracking_daily = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\tracking_daily.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"event_date", type date}, {"add_to_cart", Int64.Type}, {"valid_purchase_events", Int64.Type}, {"purchase_events", Int64.Type}, {"valid_purchase_share", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

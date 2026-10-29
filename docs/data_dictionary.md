@@ -57,3 +57,27 @@ Built by `sql/02_model.sql` and `sql/03_metrics.sql`. Definitions: `docs/metric_
 | `revenue_at_stake` | one step | USD per 30 days from +1 point, low / base / high |
 | `weekly_north_star`, `retention_cohorts` | one week / cohort-week | purchasing users with guardrails; weekly retention of new users |
 | `channel_quality`, `promo_effect`, `category_funnel` | one channel / one row / one category | first-touch channel shares; promotion raw vs adjusted gap; category funnel |
+
+## Lineage
+
+```mermaid
+flowchart LR
+    BQ[GA4 public sample] --> E[events_flat]
+    BQ --> I[items_flat]
+    E --> FE[fact_events]
+    FE --> T[fact_transactions]
+    FE --> S[fact_sessions]
+    T --> S
+    S --> U[dim_users]
+    T --> U
+    S --> M[SQL reporting tables]
+    U --> M
+    I --> M
+    M --> CSV[Aggregate CSV exports]
+    CSV --> APP[Streamlit]
+    CSV --> BI[Power BI]
+    E --> EV[Discovery and robustness evidence]
+    S --> EV
+    U --> EV
+    EV --> NB[Notebook 07 and generated evidence review]
+```

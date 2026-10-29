@@ -1,0 +1,67 @@
+table revenue_bootstrap
+	lineageTag: 4aa079f8-9216-938c-6f21-4ad0dc083dfc
+
+	measure 'Bootstrap estimate' = SUM(revenue_bootstrap[usd_base])
+		formatString: \$#,0
+		lineageTag: 692899c8-2bd8-3d13-79b3-a459857cf11f
+
+	measure 'Bootstrap lower bound' = SUM(revenue_bootstrap[ci_low])
+		formatString: \$#,0
+		lineageTag: 4398889a-be82-cb33-8f48-a316697b2d17
+
+	measure 'Bootstrap upper bound' = SUM(revenue_bootstrap[ci_high])
+		formatString: \$#,0
+		lineageTag: e7129636-6b6c-96f0-8943-e6aba7d62993
+
+	column step
+		dataType: string
+		lineageTag: 4930df5b-116e-ae39-7c92-167e3b53491c
+		summarizeBy: none
+		sourceColumn: step
+		sortByColumn: step_order
+
+		annotation SummarizationSetBy = User
+
+	column usd_base
+		dataType: double
+		lineageTag: 691b0172-0cbf-be57-de56-9f95a9c6689e
+		summarizeBy: none
+		sourceColumn: usd_base
+
+		annotation SummarizationSetBy = User
+
+	column ci_low
+		dataType: double
+		lineageTag: dd5d1abe-ec79-dd2c-e2f0-211de1d79eb9
+		summarizeBy: none
+		sourceColumn: ci_low
+
+		annotation SummarizationSetBy = User
+
+	column ci_high
+		dataType: double
+		lineageTag: 5c5ddb0e-8521-a88e-9bbe-d2eefdd65c63
+		summarizeBy: none
+		sourceColumn: ci_high
+
+		annotation SummarizationSetBy = User
+
+	column step_order
+		dataType: int64
+		lineageTag: b2f8cd06-60d2-6a94-a7c8-98d1cf98b2c8
+		summarizeBy: none
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = User
+
+	partition revenue_bootstrap = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataFolder & "\revenue_bootstrap.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"step", type text}, {"usd_base", type number}, {"ci_low", type number}, {"ci_high", type number}, {"step_order", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

@@ -19,7 +19,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: step_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column step
 		dataType: string
@@ -28,7 +28,7 @@ table revenue_at_stake
 		sourceColumn: step
 		sortByColumn: step_order
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column step_conversion
 		dataType: double
@@ -36,7 +36,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: step_conversion
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column drop_rate
 		dataType: double
@@ -44,7 +44,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: drop_rate
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column usd_low
 		dataType: double
@@ -52,7 +52,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: usd_low
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column usd_base
 		dataType: double
@@ -60,7 +60,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: usd_base
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column usd_high
 		dataType: double
@@ -68,7 +68,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: usd_high
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column rank_by_usd
 		dataType: int64
@@ -76,7 +76,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: rank_by_usd
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column rank_by_drop
 		dataType: int64
@@ -84,7 +84,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: rank_by_drop
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column rank_by_sessions_lost
 		dataType: int64
@@ -92,7 +92,7 @@ table revenue_at_stake
 		summarizeBy: none
 		sourceColumn: rank_by_sessions_lost
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition revenue_at_stake = m
 		mode: import

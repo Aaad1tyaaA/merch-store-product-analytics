@@ -73,8 +73,9 @@ with planner_tab:
         r3.metric('Full weeks (minimum 2)', weeks)
         st.caption(f'Detects a change from {baseline:.2%} to {baseline * (1 + mde):.2%} '
                    f'({baseline * mde * 100:.2f} points). Avoid weeks with Black Friday, Cyber Monday or Christmas.')
-        grid = pd.DataFrame({'relative MDE': [f'{m:.0%}' for m in (0.02, 0.03, 0.05, 0.1, 0.2)],
-                             'users per arm': [n_per_arm(baseline, m, alpha, power) for m in (0.02, 0.03, 0.05, 0.1, 0.2)]})
+        feasible = [m for m in (0.02, 0.03, 0.05, 0.1, 0.2) if baseline * (1 + m) < 1]
+        grid = pd.DataFrame({'relative MDE': [f'{m:.0%}' for m in feasible],
+                             'users per arm': [n_per_arm(baseline, m, alpha, power) for m in feasible]})
         grid['weeks'] = [weeks_needed(x, weekly) for x in grid['users per arm']]
         st.dataframe(grid, hide_index=True, width='stretch')
 

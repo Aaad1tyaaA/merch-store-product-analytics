@@ -42,7 +42,7 @@ Market: `United States`, `India`, or `Rest of world` (all other countries, inclu
 | Revenue per session | Order revenue ÷ sessions |
 | Revenue at stake | Extra revenue per 30 days if one step's conversion rose by 1 percentage point with every other step unchanged. Base: marginal sessions convert downstream like current ones. Low: they convert downstream at half the current rate. High: base, at the December run rate. |
 | Activated user | A new user who adds to cart in their first session. Module 4 tests whether this predicts purchase. |
-| 30-day purchase | The user has an order within 30 days (30 × 24 hours of UTC time) of the first session's first event. Only users first seen on or before 1 January 2021 count, so everyone has a full 30-day window inside the data. |
+| 30-day purchase | The user has an order within 30 days (30 × 24 hours of UTC time) of the first session's first event. The activation analysis uses new users first seen 26 November–26 December 2020, excluding first-session buyers, so cart tracking and the full follow-up remain inside the reliable order window. |
 | Weekly retention | Share of a weekly new-user cohort with at least one session in week *k* after the first session's week. Weeks start Monday on property dates. |
 | North star | Weekly purchasing users (distinct users with an order that week). Guardrails: AOV and revenue per session. |
 

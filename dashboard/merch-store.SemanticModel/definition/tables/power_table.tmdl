@@ -11,11 +11,12 @@ table power_table
 
 	column relative_mde
 		dataType: double
+		formatString: 0.0%
 		lineageTag: 954edbb8-ad75-573c-8a8b-26b8fd59e4a8
 		summarizeBy: none
 		sourceColumn: relative_mde
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column absolute_mde_pts
 		dataType: double
@@ -23,7 +24,7 @@ table power_table
 		summarizeBy: none
 		sourceColumn: absolute_mde_pts
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column n_per_arm
 		dataType: int64
@@ -31,7 +32,7 @@ table power_table
 		summarizeBy: none
 		sourceColumn: n_per_arm
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column weeks_needed
 		dataType: int64
@@ -39,7 +40,7 @@ table power_table
 		summarizeBy: none
 		sourceColumn: weeks_needed
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column months_needed
 		dataType: double
@@ -47,7 +48,7 @@ table power_table
 		summarizeBy: none
 		sourceColumn: months_needed
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition power_table = m
 		mode: import
