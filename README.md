@@ -4,7 +4,9 @@
 
 **Recommendation: validate discovery tracking, then test product discovery.** 79.8% of sessions never view a product. One extra point at that step is worth about $6.0k per 30 days (range $3.0k–$7.3k), more than any later step. New visitors are the weakest segment there. Product-titled landing pages sometimes lack `view_item`, so I validate instrumentation before testing a best-seller grid for new visitors: three weeks, 29,259 users per arm, powered for a 5% lift.
 
-[Decision memo (PDF)](docs/memo.pdf) · [Discovery evidence](docs/evidence_review.md) · [Dashboard (PDF + Power BI)](docs/power_bi.md) · [Funnel and test-planner app](app/streamlit_app.py) · [Experiment design](docs/experiment_design.md) · [Metric definitions](docs/metric_definitions.md)
+[Live analytics app](https://aditya-merch-store-analytics.streamlit.app/) · [Decision memo (PDF)](docs/memo.pdf) · [Discovery evidence](docs/evidence_review.md) · [Dashboard (PDF + Power BI)](docs/power_bi.md) · [App source](app/streamlit_app.py) · [Experiment design](docs/experiment_design.md) · [Metric definitions](docs/metric_definitions.md)
+
+The Streamlit app has five sections: business health, a segmented funnel explorer, customers and channels, discovery evidence, and the sample-size planner. Interactive charts pair trends and comparisons with decision notes, measurement limits, and clearly labelled modelled scenarios. The committed aggregates and evidence CSVs are sufficient to run it; no database or Google credentials are needed. KPI cards describe the reliable funnel window; weekly charts show complete weeks within it, while channel and cohort charts state their separate populations.
 
 [![The purchase journey dashboard](output/dashboard/01-overview.png)](output/pdf/merch-store-dashboard.pdf)
 

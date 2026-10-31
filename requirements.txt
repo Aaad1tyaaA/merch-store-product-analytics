@@ -9,6 +9,7 @@ statsmodels==0.15.0
 scipy==1.18.1
 matplotlib==3.11.2
 streamlit==1.66.1
+altair==6.3.0
 mistune==3.4.0
 pytest==9.1.1
 nbformat==5.11.1

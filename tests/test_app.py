@@ -24,10 +24,21 @@ def test_app_runs_and_planner_responds():
     at = AppTest.from_file(str(APP / 'streamlit_app.py'), default_timeout=60).run()
     assert not at.exception
     assert at.metric[0].value == '248,669'
+    assert len(at.tabs) == 5
+    assert len(at.get('vega_lite_chart')) >= 12
+    assert any('Validate tracking first' in item.value for item in at.info)
     at.selectbox[0].select('Device').run()
     assert not at.exception
     at.number_input[3].set_value(9_000).run()
     assert at.error and 'SRM detected' in at.error[0].value
+
+
+def test_empty_segment_selection_keeps_other_analytics_available():
+    at = AppTest.from_file(str(APP / 'streamlit_app.py'), default_timeout=60).run()
+    at.multiselect[0].set_value([]).run()
+    assert not at.exception
+    assert any('Pick at least one segment' in item.value for item in at.info)
+    assert len(at.get('vega_lite_chart')) >= 10
 
 
 def test_high_baseline_skips_impossible_comparison_grid_rows():
