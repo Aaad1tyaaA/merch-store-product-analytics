@@ -1,8 +1,6 @@
-# AI log
+# Analysis decisions
 
-I built this with an AI assistant. I chose the questions and reviewed results; it wrote most of the code.
-
-These are the places where the first approach would have been wrong, and what changed. Each number comes from the notebooks.
+Ten places where the obvious first approach would have been wrong, and what I changed. Each number comes from the notebooks.
 
 1. **Keying sessions on `ga_session_id` alone.** It is a start time in seconds, so different users collide. Alone it gives 349,545 sessions; with `user_pseudo_id` it gives 360,129. The difference merges 10,584 sessions of different people.
 

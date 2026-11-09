@@ -266,6 +266,7 @@ def grid_style(matrix=False):
         'grid': [{'properties': {'rowPadding': lit('2D'), 'gridVertical': lit('false'), 'gridHorizontal': lit('false')}}],
     }
     if matrix:
+        style['columnHeaders'][0]['properties']['alignment'] = lit("'Right'")  # line headers up with right-aligned values
         style['rowHeaders'] = [{'properties': {'fontSize': lit('12D'), 'fontFamily': lit("'Segoe UI'"), 'fontColor': fill(INK)}}]
         style['subTotals'] = [{'properties': {'rowSubtotals': lit('false'), 'columnSubtotals': lit('false')}}]
         style['rowTotal'] = [{'properties': {'show': lit('false')}}]
@@ -380,6 +381,13 @@ def audience_filter():
 
 def page_one(kpis):
     p = PAGES[0][0]
+    funnel = visual(p, 'funnel', 'clusteredBarChart', (232, 330, 400, 380),
+        {'Category': [c('funnel_overall', 'step')], 'Y': [caption(m('Funnel sessions'), 'Sessions')]},
+        heading='01  Sessions by purchase step', sort=field('funnel_overall', 'step'),
+        objects=chart_style())
+    funnel[1]['visual']['visualContainerObjects']['subTitle'] = [{'properties': {'show': lit('true'),
+        'text': lit("'Order = sessions with an order, not the order count'"), 'fontSize': lit('12D'),
+        'fontColor': fill(MUTED), 'fontFamily': lit("'Segoe UI'")}}]
     period = f"{pd.Timestamp(kpis.first_date):%d %b %Y} - {pd.Timestamp(kpis.last_date):%d %b %Y}"
     return p, PAGES[0][1], [
         *chrome(p, 'The purchase journey', 'Where buyers are lost, what the opportunity is, and where to focus  |  ' + period),
@@ -387,10 +395,7 @@ def page_one(kpis):
           for i, (measure, label) in enumerate([('Total sessions', 'Sessions analysed'), ('Total orders', 'Valid orders'),
               ('Session conversion', 'Session conversion'), ('Average order value', 'Average order value')])],
         takeaway(p, 'THE OPPORTUNITY  /  Four in five sessions record no product view. Validate tracking, then test discovery for new visitors.'),
-        visual(p, 'funnel', 'clusteredBarChart', (232, 330, 400, 380),
-            {'Category': [c('funnel_overall', 'step')], 'Y': [caption(m('Funnel sessions'), 'Sessions')]},
-            heading='01  Sessions by purchase step', sort=field('funnel_overall', 'step'),
-            objects=chart_style()),
+        funnel,
         visual(p, 'stake', 'clusteredBarChart', (648, 330, 768, 380),
             {'Category': [c('revenue_at_stake', 'step')], 'Y': [caption(m('USD at stake (low)'), 'Low'),
                 caption(m('USD at stake (base)'), 'Base'), caption(m('USD at stake (high)'), 'December')]},

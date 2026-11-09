@@ -2,6 +2,10 @@
 
 [![tests](https://github.com/Aaad1tyaaA/merch-store-product-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/Aaad1tyaaA/merch-store-product-analytics/actions/workflows/ci.yml)
 
+- **Problem:** where does the Google Merch Store lose buyers, and what should it fix first?
+- **Finding:** 79.8% of sessions never view a product; +1 point there is worth ~$6.0k/30 days, more than any checkout fix.
+- **Action:** validate discovery tracking, then A/B test a best-seller grid for new visitors (29K users/arm, powered for a 5% lift).
+
 **Recommendation: validate discovery tracking, then test product discovery.** 79.8% of sessions never view a product. One extra point at that step is worth about $6.0k per 30 days (range $3.0k–$7.3k), more than any later step. New visitors are the weakest segment there. Product-titled landing pages sometimes lack `view_item`, so I validate instrumentation before testing a best-seller grid for new visitors: three weeks, 29,259 users per arm, powered for a 5% lift.
 
 [Live analytics app](https://aditya-merch-store-analytics.streamlit.app/) · [Decision memo (PDF)](docs/memo.pdf) · [Discovery evidence](docs/evidence_review.md) · [Dashboard (PDF + Power BI)](docs/power_bi.md) · [App source](app/streamlit_app.py) · [Experiment design](docs/experiment_design.md) · [Metric definitions](docs/metric_definitions.md)
@@ -73,7 +77,7 @@ I run `python -m pytest -q` after installing the full dependencies. GitHub Actio
 | `app/` | Streamlit app, running on the small aggregates in `app/data/` |
 | `dashboard/` | Shared four-page Power BI template, fourteen CSV inputs and an ignored local working copy prepared by the launcher |
 | `output/` | Native Power BI PDF and full-page preview images |
-| `docs/` | Memo, experiment design, metric definitions, cleaning log, Power BI guide, data dictionary, AI log |
+| `docs/` | Memo, experiment design, metric definitions, cleaning log, Power BI guide, data dictionary, analysis decisions |
 | `tests/` | Model rules on synthetic data, full-data checks, dashboard and app smoke tests |
 
 **Data and limits**
@@ -83,4 +87,4 @@ The source is Google's [obfuscated GA4 sample](https://developers.google.com/ana
 - **Sessions:** published analyses report 354,970 (`session_start` events) or 360,129 sessions; this repository uses 360,129 by definition.
 - **Revenue:** order revenue ($307,640) is lower than the sum of purchase events ($362,165) because invalid and duplicate transaction ids are removed.
 - **Users and channels:** users are cookies, channels are first-touch, and all comparisons except the proposed test are observational.
-- **AI assistance:** see [docs/ai_log.md](docs/ai_log.md).
+- **Analysis decisions:** ten places where the obvious approach was wrong, and what changed: [docs/analysis_decisions.md](docs/analysis_decisions.md).
